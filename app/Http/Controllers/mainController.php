@@ -22,8 +22,10 @@ class mainController extends Controller
     }
 
     public function _dashboard() {
-        $response = Http::get('https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/PELANGGAN!C2:E7?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS');
+        $region = "TASIKMALAYA";
+        $response = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/{$region}!A1:AA20?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
         $data = $response->json();
+        
         return view('_dashboard', [
             "title" => "_Dashboard",
             "data" => $data,
