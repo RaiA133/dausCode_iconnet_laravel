@@ -1,15 +1,12 @@
 @extends('layout.app')
 
 @section('content')
-@php
-    $fat = $data["values"]
-@endphp
-
+{{-- {{ dd($fat) }} --}}
 <div class="pagetitle">
     <h1>{{ $title }}</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><span>Home</span></li>
             <li class="breadcrumb-item active">{{ $title }}</li>
         </ol>
     </nav>
@@ -41,15 +38,16 @@
                         <div class="d-flex align-items-center">
                             <label for="regionSelect" class="me-2 fw-bold">Region : </label>
                             <form action="" method="POST">
-                                <select id="regionSelect" class="form-select" aria-label="Default select example">
-                                    <option value="BANDUNG">Bandung</option>
-                                    <option value="TASIKMALAYA">Tasikmalaya</option>
-                                    <option value="CIREBON">Cirebon</option>
-                                    <option value="FDT_FAT">FDT_FAT</option>
+                                <select id="regionSelect" class="form-select" onchange="window.location.href=this.value" aria-label="Default select example" >
+                                    <option value="BANDUNG" {{ (Request::segment(2) == "BANDUNG") ? "selected" : "" }}>Bandung</option>
+                                    <option value="TASIKMALAYA" {{ (Request::segment(2) == "TASIKMALAYA") ? "selected" : "" }}>Tasikmalaya</option>
+                                    <option value="CIREBON" {{ (Request::segment(2) == "CIREBON") ? "selected" : "" }}>Cirebon</option>
+                                    <option value="FDT_FAT" {{ (Request::segment(2) == "FDT_FAT") ? "selected" : "" }}>FDT_FAT</option>
                                     <!-- Tambahkan pilihan lain sesuai kebutuhan -->
                                 </select>
                             </form>
                         </div>
+
                         <!-- End General Form Elements -->
 
                     </div>
@@ -82,7 +80,7 @@
                                             <input id="searchInput" class="form-control me-2" type="search"
                                                 placeholder="Search" aria-label="Search">
                                             <button id="searchButton" class="btn btn-outline-success me-2"
-                                                type="button">Search</button>
+                                                type="submit">Search</button>
                                         </form>
                                     </div>
                                     <!-- end FORM SEACRH DATA -->
@@ -91,12 +89,13 @@
 
                                 <div class="datatable-container">
                                     <table class="table datatable datatable-table">
-                                        <thead>
+                                        <thead id="fat-search-area">
 
+                                            {{-- modals button --}}
                                             @for ($i = 1; $i < sizeof($fat); $i++) 
                                             <tr>
                                                 <td>
-                                                    <a href="">{{ $fat[$i][0] }}</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick="fatCode('{{ $fat[$i][0] }}')">{{ $fat[$i][0] }}</a>
                                                 </td>
                                             </th>
                                             @endfor
@@ -104,6 +103,50 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                                {{-- modal --}}
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-6 border">
+                                                        <div id="map"></div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <table>
+                                                            <tbody>
+                                                                @for ($i = 0; $i < sizeof($fat[0]); $i++)
+                                                                <tr>
+                                                                    <th>{{ $fat[0][$i] }}</th>
+                                                                    <td class="px-2">:</td>
+                                                                    <span id="fat-details">
+                                                                        {{-- @if ($fat[$i][0] == 'var dari params')
+                                                                            {{-- <td>{{  ==  }}</td> --}}
+                                                                        {{-- @endif --}}
+                                                                    </span>
+                                                                </tr>
+                                                                @endfor
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
 
                                 <div class="datatable-bottom">
                                     <div class="datatable-info form-text">Showing 1 to 5 of 5 entries</div>
@@ -156,6 +199,5 @@
     </div>
 </section>
 
-<script src="app.js"></script>
-
+<script src="{{ asset('app.js') }}"></script>
 @endsection

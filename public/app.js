@@ -26,5 +26,43 @@ regionSelect.addEventListener("change", function () {
     tableHeader.innerHTML = "";
 });
 
-fetchData(regionSelect.value);
+// fetchData(regionSelect.value);
+
 // end GANTI REGION //
+
+
+
+// FUNGSI SERCING DATA //
+function performSearch() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const fatSearchArea = document.getElementById("fat-search-area");
+    console.log(fatSearchArea);
+    const tableRows = fatSearchArea.querySelectorAll("tr");
+
+    tableRows.forEach(row => {
+        const rowData = Array.from(row.querySelectorAll("td")).map(cell => cell.textContent.toLowerCase());
+
+        if (rowData.some(cellText => cellText.includes(searchInput))) {
+            row.style.display = ""; // menampilkan baris yang sesuai dengan data
+        } else {
+            row.style.display = "none"; // menghilangkan baris yang tidak sesuai dengan data
+        }
+    });
+}
+// Search Button
+const searchButton = document.getElementById("searchButton");
+searchButton.addEventListener("click", performSearch);
+
+// menghentikan reload halaman ketika serach button ditekan dengan enter
+document.getElementById('searchButton').addEventListener('click', (e) => { e.preventDefault() });
+
+// end FUNGSI SERCING DATA //
+
+function fatCode(fatCodes){
+    const fatCode = fatCodes
+    console.log(fatCode);
+    document.getElementById('fat-details').innerText = `
+        <td> ${fatCode} <td>
+    `;
+}
+

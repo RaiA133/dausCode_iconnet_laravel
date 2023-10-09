@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [mainController::class, 'dashboard']);
 Route::get('/halaman2', [mainController::class, 'halaman2']);
-Route::get('/dev', [mainController::class, '_dashboard']);
+Route::get('/dev/{asd}', [mainController::class, '_dashboard']);
+// Route::post('/dev', [mainController::class, '_dashboard']);

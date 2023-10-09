@@ -1,6 +1,7 @@
 #map {
     height: 400px;
     width: 600px;
+    /* border: 1px solid grey; */
 }
 .container-table {
     height: 300px;

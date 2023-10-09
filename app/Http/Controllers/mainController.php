@@ -21,14 +21,17 @@ class mainController extends Controller
         ]);
     }
 
-    public function _dashboard() {
-        $region = "TASIKMALAYA";
+    public function _dashboard(Request $request, $region) {
+
         $response = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/{$region}!A1:AA20?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
         $data = $response->json();
+        $fat = $data["values"];
         
         return view('_dashboard', [
             "title" => "_Dashboard",
-            "data" => $data,
+            "fat" => $fat,
+            "region" => $region,
         ]);
     }
+    
 }

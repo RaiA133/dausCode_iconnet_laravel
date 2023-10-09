@@ -17,12 +17,12 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-      {{-- <li class="nav-item">
-        <a class="nav-link {{ ($title == "_Dashboard") ? "" : "collapsed" ; }}" href="/dev">
+      <li class="nav-item">
+        <a class="nav-link {{ ($title == "_Dashboard") ? "" : "collapsed" ; }}" href="/dev/BANDUNG">
           <i class="bi bi-person"></i>
-          <span>_Dashboard</span>
+          <span>_Dashboard (on work)</span>
         </a>
-      </li><!-- End Profile Page Nav --> --}}
+      </li><!-- End Profile Page Nav -->
 
     </ul>
 

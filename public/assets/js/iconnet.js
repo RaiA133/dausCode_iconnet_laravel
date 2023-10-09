@@ -55,7 +55,6 @@ fetchData(regionSelect.value);
 // end GANTI REGION //
 
 
-
 // FUNGSI SERCING DATA //
 function performSearch() {
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
