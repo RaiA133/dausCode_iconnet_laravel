@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-{{-- {{ dd($fat) }} --}}
+
 <div class="pagetitle">
     <h1>{{ $title }}</h1>
     <nav>
@@ -95,7 +95,8 @@
                                             @for ($i = 1; $i < sizeof($fat); $i++) 
                                             <tr>
                                                 <td>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick="fatCode('{{ $fat[$i][0] }}')">{{ $fat[$i][0] }}</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick="fatCode('{{ $fat[$i][0] }}');">{{ $fat[$i][0] }}</a>
+ 
                                                 </td>
                                             </th>
                                             @endfor
@@ -103,6 +104,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+            
 
                                 {{-- modal --}}
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,18 +123,19 @@
                                                     <div class="col-6">
                                                         <table>
                                                             <tbody>
+
                                                                 @for ($i = 0; $i < sizeof($fat[0]); $i++)
                                                                 <tr>
                                                                     <th>{{ $fat[0][$i] }}</th>
                                                                     <td class="px-2">:</td>
                                                                     <span id="fat-details">
-                                                                        {{-- @if ($fat[$i][0] == 'var dari params')
-                                                                            {{-- <td>{{  ==  }}</td> --}}
-                                                                        {{-- @endif --}}
+
+
+
                                                                     </span>
                                                                 </tr>
                                                                 @endfor
-
+                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -198,6 +201,28 @@
 
     </div>
 </section>
+<script>
+
+    const fat = '<?php echo json_encode($fat); ?>';
+    const fatJSON = JSON.parse(fat);
+    function fatCode(fatCodes){
+        console.log(fatCodes);
+        console.log(fatJSON);
+        // console.log(fatJSON[1]);
+        
+        for ( let i = 1; i < fat.length; i++ ) {
+            if ( fatJSON[i][0] === fatCodes ) {
+                console.log(fatJSON[i]);
+            }
+        }
+
+        const fatCode = fatCodes
+        console.log(fatCode);
+        document.getElementById('fat-details').innerText = `
+            <td> ${fatCode} <td>
+        `;
+    }
+</script>
 
 <script src="{{ asset('app.js') }}"></script>
 @endsection

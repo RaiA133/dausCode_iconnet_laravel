@@ -57,12 +57,3 @@ searchButton.addEventListener("click", performSearch);
 document.getElementById('searchButton').addEventListener('click', (e) => { e.preventDefault() });
 
 // end FUNGSI SERCING DATA //
-
-function fatCode(fatCodes){
-    const fatCode = fatCodes
-    console.log(fatCode);
-    document.getElementById('fat-details').innerText = `
-        <td> ${fatCode} <td>
-    `;
-}
-
