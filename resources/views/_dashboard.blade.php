@@ -93,9 +93,10 @@
 
                                             {{-- modals button --}}
                                             @for ($i = 1; $i < sizeof($fat); $i++) 
+                                            @php $dataFAT = $fat[$i][0] @endphp
                                             <tr>
                                                 <td>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick="fatCode('{{ $fat[$i][0] }}');">{{ $fat[$i][0] }}</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
  
                                                 </td>
                                             </th>
