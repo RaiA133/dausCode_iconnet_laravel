@@ -1,37 +1,3 @@
-function fetchData(region){
-    console.log(region);
-    const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/${region}!A1:AA20?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS`;
-
-    fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data.values[0]);
-        // console.log(data.values[1]);
-    })
-    .catch(error => {
-        console.error("Error fetching data:", error);
-    });
-}
-
-// GANTI REGION //
-const regionSelect = document.getElementById("regionSelect");
-regionSelect.addEventListener("change", function () {
-    const selectedRegion = this.value;
-    fetchData(selectedRegion);
-
-    // menghapus data sebelumnya ketika ganti region, jadi tidak perlu reload
-    const tableBody = document.getElementById("data-table-body");
-    const tableHeader = document.querySelector(".table thead tr");
-    tableBody.innerHTML = "";
-    tableHeader.innerHTML = "";
-});
-
-// fetchData(regionSelect.value);
-
-// end GANTI REGION //
-
-
-
 // FUNGSI SERCING DATA //
 function performSearch() {
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
@@ -49,11 +15,56 @@ function performSearch() {
         }
     });
 }
-// Search Button
-const searchButton = document.getElementById("searchButton");
-searchButton.addEventListener("click", performSearch);
 
-// menghentikan reload halaman ketika serach button ditekan dengan enter
-document.getElementById('searchButton').addEventListener('click', (e) => { e.preventDefault() });
 
+
+// FUNGSI SERCING DATA //
+    const searchButton = document.getElementById("searchButton");
+    searchButton.addEventListener("click", performSearch);
+
+    // menghentikan reload halaman ketika serach button ditekan dengan enter
+    document.getElementById('searchButton').addEventListener('click', (e) => { e.preventDefault() });
 // end FUNGSI SERCING DATA //
+
+
+
+// PNEGULANGAN TERHADAP DATA DETAIL SETIAP FAT, TABLE VERTTICAL //
+const fatJSON = JSON.parse(fat);
+const table = document.getElementById('myTable');
+function fatCode(fatCodes){
+    let fatTable = [];
+    for ( let i = 0; i < fatJSON.length; i++ ) {
+        if ( fatJSON[i][0] === fatCodes ) {
+            let fatJudul = fatJSON[0];
+            let fatDetail = fatJSON[i];
+            fatTable = {0:fatJudul, 1:fatDetail}
+        }
+    }
+    for (let z = 0; z < fatTable[0].length; z++) {
+        const row = table.insertRow();
+        const fatTR = document.createElement('tr');
+        row.appendChild(fatTR);
+
+        const fatTH = document.createElement('th');
+        fatTH.textContent = fatTable[0][z];
+        row.appendChild(fatTH);
+
+        const fatTD = document.createElement('td');
+        fatTD.textContent = ':';
+        row.appendChild(fatTD);
+
+        const fatTD2 = document.createElement('td');
+        fatTD2.textContent = fatTable[1][z];
+        row.appendChild(fatTD2);
+    }
+}
+
+// menghapus / clear table details fat setelah diclose
+document.getElementById('fat-modal-close').addEventListener('click', () => {
+    document.getElementById('myTable').innerHTML = "";
+});
+
+// END PNEGULANGAN //
+
+
+

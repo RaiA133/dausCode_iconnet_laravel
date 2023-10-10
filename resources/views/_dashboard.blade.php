@@ -112,40 +112,22 @@
                                       <div class="modal-content">
                                         <div class="modal-header">
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <div class="col-6 border">
+                                                    <div class="col-lg-6 col-sm-12 border">
                                                         <div id="map"></div>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <table>
-                                                            <tbody>
-
-                                                                @for ($i = 0; $i < sizeof($fat[0]); $i++)
-                                                                <tr>
-                                                                    <th>{{ $fat[0][$i] }}</th>
-                                                                    <td class="px-2">:</td>
-                                                                    <span id="fat-details">
-
-
-
-                                                                    </span>
-                                                                </tr>
-                                                                @endfor
-                                                                
-                                                            </tbody>
+                                                    <div class="col-lg-6 col-sm-12 table-responsive">
+                                                        <table class="border table table-striped" id="myTable">
+                                                            {{-- data FAT detail diulang disini --}}
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                             
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
                                         </div>
                                       </div>
                                     </div>
@@ -200,29 +182,12 @@
         <!-- End Right side columns -->
 
     </div>
+
+
 </section>
-<script>
 
-    const fat = '<?php echo json_encode($fat); ?>';
-    const fatJSON = JSON.parse(fat);
-    function fatCode(fatCodes){
-        console.log(fatCodes);
-        console.log(fatJSON);
-        // console.log(fatJSON[1]);
-        
-        for ( let i = 1; i < fat.length; i++ ) {
-            if ( fatJSON[i][0] === fatCodes ) {
-                console.log(fatJSON[i]);
-            }
-        }
-
-        const fatCode = fatCodes
-        console.log(fatCode);
-        document.getElementById('fat-details').innerText = `
-            <td> ${fatCode} <td>
-        `;
-    }
-</script>
+{{-- mengubah $fat PHP ke JSON, yg dikirim ke app.js --}}
+<script> const fat = '<?php echo json_encode($fat); ?>'; </script>
 
 <script src="{{ asset('app.js') }}"></script>
 @endsection
