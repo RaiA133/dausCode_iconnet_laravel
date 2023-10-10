@@ -1,6 +1,6 @@
 #map {
     height: 400px;
-    width: 600px;
+    width: 100%;
     /* border: 1px solid grey; */
 }
 .container-table {
@@ -10,12 +10,12 @@
 @media only screen and (max-width : 400px) {
     #map {
         height: 400px;
-        width: 305px;
+        width: 100%;
     }     
 }
 @media only screen and (max-width : 390px) {
     #map {
         height: 400px;
-        width: 260px;
+        width: 100%;
     }     
 }
