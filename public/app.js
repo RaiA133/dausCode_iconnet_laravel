@@ -55,9 +55,20 @@ function performSearch() {
     }
 
     // menghapus / clear table details fat setelah diclose
+    const tableFAT = document.getElementById('myTable');
     document.getElementById('fat-modal-close').addEventListener('click', () => {
+        tableFAT.innerHTML = "";
+    });
+    document.getElementById('exampleModal').addEventListener('click', () => {
         document.getElementById('myTable').innerHTML = "";
     });
+    
+    // membuat ketika bagian dalam dari modal diklik tidak akan ikut ikutan seperti 
+    // parentnya yg menghilangkan details ketika parent/element pembungkusnya diklik
+    document.querySelector('#exampleModal .modal-dialog').addEventListener('click', (el) => { // params harus disertakan untuk  
+        el.stopPropagation();                                                                 // menjalankan stopPropagation();
+    });
+       
 // END FAT //
 
 
