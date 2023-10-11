@@ -114,7 +114,7 @@
                                       <div class="modal-content">
                                         <div class="modal-header pb-2 mx-2">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">FAT details | {{ $region }}</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
                                         </div>
                                         <div class="modal-body pt-0">
                                             <div class="col-12">
@@ -190,6 +190,5 @@
 
 {{-- mengubah $fat PHP ke JSON, yg dikirim ke app.js --}}
 <script> const fat = '<?php echo json_encode($fat); ?>'; </script>
-
 <script src="{{ asset('app.js') }}"></script>
 @endsection

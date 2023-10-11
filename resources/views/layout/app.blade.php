@@ -35,7 +35,7 @@
 
     </head>
 
-    <body data-bs-theme="light">
+    <body data-bs-theme="light" class="too">
 
         <main id="main" class="main">
 
@@ -68,7 +68,7 @@
             {{-- <script src="assets/vendor/php-email-form/validate.js"></script> --}}
             
             <!-- Template Main JS File -->
-            <link href="{{ asset('assets/js/main.js') }}" rel="stylesheet">
+            <script src="{{ asset('assets/js/main.js') }}" rel="stylesheet"> </script>
 
             {{-- SCRIPTKU --}}
             
