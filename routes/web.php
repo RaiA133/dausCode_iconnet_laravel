@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [mainController::class, 'dashboard']);
+
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
+Route::get('/dashboard', [mainController::class, 'dashboard']);
+Route::get('/dashboard/{region}', [mainController::class, 'dashboard']);
 Route::get('/halaman2', [mainController::class, 'halaman2']);
-Route::get('/dev/{asd}', [mainController::class, '_dashboard']);
 // Route::post('/dev', [mainController::class, '_dashboard']);

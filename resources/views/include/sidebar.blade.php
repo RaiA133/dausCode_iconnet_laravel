@@ -4,7 +4,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item ">
-        <a class="nav-link {{ ($title == "Dashboard") ? "" : "collapsed" ; }}" href="/">
+        <a class="nav-link {{ ($title == "Dashboard") ? "" : "collapsed" ; }}" href="/dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -17,12 +17,12 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link {{ ($title == "_Dashboard") ? "" : "collapsed" ; }}" href="/dev/BANDUNG">
           <i class="bi bi-person"></i>
           <span>_Dashboard (on work)</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li><!-- End Profile Page Nav --> --}}
 
     </ul>
 
