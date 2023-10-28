@@ -33,6 +33,9 @@
         <!-- CSS EXTERNAL MANUAL -->
         <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
+        {{-- TAB LOGO --}}
+        <link rel="icon" href="{{ asset('assets/img/iconnet/Iconnet.png') }}">
+
     </head>
 
     <body data-bs-theme="light" class="too">
