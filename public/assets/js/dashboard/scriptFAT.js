@@ -29,7 +29,9 @@ document.getElementById('searchButtonFAT').addEventListener('click', (e) => { e.
 // PNEGULANGAN FAT DETAILS, TABLE VERTTICAL //
 const fatJSON = JSON.parse(regionData);
 const tableFAT = document.getElementById('myTableFAT'); // table penampung FAT
+
 function fatCode(fatCodes){
+    document.getElementById('fatModalTitle').innerHTML = fatCodes // Judul Modal diberi FAT
     let fatTable = [];
     for ( let i = 0; i < fatJSON.length; i++ ) {
         if ( fatJSON[i][0] === fatCodes ) {             // jika params == data region di kolom 5 (JIKA DATA PENCARI BUKAN DARI A, BISA UBAH BERDASARKAN KOLOM, INI 1 = A (KOLOM A = FAT))

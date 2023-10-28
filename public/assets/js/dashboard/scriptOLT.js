@@ -27,7 +27,9 @@ document.getElementById('searchButtonOLT').addEventListener('click', (e) => { e.
 // PNEGULANGAN FAT DETAILS, TABLE VERTTICAL //
 const oltJSON = JSON.parse(regionData);
 const tableOLT = document.getElementById('myTableOLT'); // table penampung OLT
+
 function oltCode(oltCodes){
+    document.getElementById('oltModalTitle').innerHTML = oltCodes // Judul Modal diberi OLT
     let oltTable = [];
     for ( let i = 0; i < oltJSON.length; i++ ) {
         if ( oltJSON[i][5] === oltCodes ) {             // jika params == data region di kolom 5 (JIKA DATA PENCARI BUKAN DARI A, BISA UBAH BERDASARKAN 1 = A, INI 5 = E (KOLOM E = OLT))
