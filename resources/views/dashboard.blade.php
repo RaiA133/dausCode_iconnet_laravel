@@ -58,16 +58,16 @@
                     </div>
 
                     <div class="tab-content pt-2" id="myTabContent">
-
                         <div class="tab-pane fade active show" id="pills-home" role="tabpanel" aria-labelledby="home-tab">
                             <!-- FAT -->
                             <h5 class="card-title pb-2 pt-4">Berdasarkan Kode FAT</h5>
                             <hr class="mt-0 pt-0">
-
+                            
                             <!-- LIST FAT -->
                             <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-                                <div class="datatable-top mb-3">
 
+                                <div class="datatable-top mb-3">
+                                    
                                     <div class="datatable-dropdown">
                                         <label>
                                             <select class="datatable-selector me-4 border">
@@ -80,16 +80,16 @@
                                         </label>
                                     </div>
 
-                                    <!-- FORM SEACRH DATA -->
+                                    <!-- FORM SEACRH DATA FAT-->
                                     <div class="col-md-5 col-sm-6 top-0 end-0">
                                         <form class="d-flex" role="search">
-                                            <input id="searchInput" class="form-control me-2" type="search"
+                                            <input id="searchInputFAT" class="form-control me-2" type="search"
                                                 placeholder="Search" aria-label="Search">
-                                            <button id="searchButton" class="btn btn-outline-success me-2"
+                                            <button id="searchButtonFAT" class="btn btn-outline-success me-2"
                                                 type="submit">Search</button>
                                         </form>
                                     </div>
-                                    <!-- end FORM SEACRH DATA -->
+                                    <!-- end FORM SEACRH DATA FAT -->
 
                                 </div>
 
@@ -114,32 +114,33 @@
                                 </div>
             
 
-                                {{-- modal --}}
+                                {{-- MODAL FAT --}}
                                 <div class="modal fade" id="modalFAT" tabindex="-1" aria-labelledby="modalFATLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
-                                      <div class="modal-content">
-                                        <div class="modal-header pb-2 mx-2">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">FAT details | {{ $region }}</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
-                                        </div>
-                                        <div class="modal-body pt-0">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-sm-12 py-3">
-                                                        <div id="map" class="border bg-body-secondary"></div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
-                                                        <table class="border table table-striped mb-0" id="myTable">
-                                                            {{-- data FAT detail diulang disini --}}
-                                                        </table>
+                                        <div class="modal-content">
+                                            <div class="modal-header pb-2 mx-2">
+                                                <h1 class="modal-title fs-5" id="modalFATLabelLabel">FAT details | {{ $region }}</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
+                                            </div>
+                                            <div class="modal-body pt-0">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-sm-12 py-3">
+                                                            <div id="map" class="border bg-body-secondary"></div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
+                                                            <table class="border table table-striped mb-0" id="myTableFAT">
+
+                                                                {{-- data FAT detail diulang disini --}}
+
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
-                                      </div>
                                     </div>
-                                  </div>
+                                </div>
 
                                 <div class="datatable-bottom">
                                     <div class="datatable-info form-text">Showing 1 to 5 of 5 entries</div>
@@ -174,26 +175,24 @@
                                         </label>
                                     </div>
 
-                                    <!-- FORM SEACRH DATA -->
+                                    <!-- FORM SEACRH DATA OLT -->
                                     <div class="col-md-5 col-sm-6 top-0 end-0">
                                         <form class="d-flex" role="search">
-                                            <input id="searchInput" class="form-control me-2" type="search"
+                                            <input id="searchInputOLT" class="form-control me-2" type="search"
                                                 placeholder="Search" aria-label="Search">
                                             <button id="searchButtonOLT" class="btn btn-outline-success me-2"
                                                 type="submit">Search</button>
                                         </form>
                                     </div>
-                                    <!-- end FORM SEACRH DATA -->
-
-                                    {{-- @dd($fat) --}}
+                                    <!-- end FORM SEACRH DATA OLT -->
 
                                 </div>
 
                                 <div class="datatable-container">
                                     <table class="table datatable datatable-table">
-                                        <thead id="fat-search-area">
+                                        <thead id="olt-search-area">
 
-                                            {{-- list modals button (KODE FAT) --}}
+                                            {{-- list modals button (KODE OLT) --}}
                                             @for ($i = 1; $i < sizeof($dataRegion); $i++) 
                                             @php $dataOLT = $dataRegion[$i][5] @endphp
                                             <tr>
@@ -208,13 +207,14 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{-- modal --}}
+
+                                {{-- MODAL OLT --}}
                                 <div class="modal fade" id="modalOLT" tabindex="-1" aria-labelledby="modalOLTLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header pb-2 mx-2">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">OLT details | </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
+                                        <h1 class="modal-title fs-5" id="modalOLTLabel">OLT details | {{ $region }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="olt-modal-close" style="margin-bottom:-5px;"></button>
                                         </div>
                                         <div class="modal-body pt-0">
                                             <div class="col-12">
@@ -223,8 +223,10 @@
                                                         <div id="map" class="border bg-body-secondary"></div>
                                                     </div>
                                                     <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
-                                                        <table class="border table table-striped mb-0" id="myTable">
-                                                            {{-- data FAT detail diulang disini --}}
+                                                        <table class="border table table-striped mb-0" id="myTableOLT">
+
+                                                            {{-- data OLT detail diulang disini --}}
+
                                                         </table>
                                                     </div>
                                                 </div>
@@ -248,7 +250,7 @@
 
                         </div>
 
-                    </div><!-- End Pills Tabs -->
+                    </div>
 
                 </div>
             </div>
@@ -261,8 +263,17 @@
 
 </section>
 
-{{-- mengubah fat dan OLT PHP ke JSON, yg dikirim ke app.js --}}
-<script> const FAT = '<?php echo json_encode($dataRegion); ?>'; </script>
-<script> const OLT = '<?php echo json_encode($dataRegion); ?>'; </script>
-<script src="{{ asset('app.js') }}"></script>
+<script> const regionData = '<?php echo json_encode($dataRegion); ?>'; </script>
+
+{{-- scriptFAT.js --}}
+<script src="{{ asset('assets/js/dashboard/scriptFAT.js') }}"></script>
+
+{{-- scriptOLT.js --}}
+<script src="{{ asset('assets/js/dashboard/scriptOLT.js') }}"></script>
+
+{{-- <script src="{{ asset('assets/js/dashboard/scriptFAT.js') }}" rel="stylesheet"></script>
+<script src="{{ asset('assets/js/dashboard/scriptOLT.js') }}" rel="stylesheet"></script> --}}
+{{-- <script src="./assets/js/dashboard/scriptFAT.js"rel="stylesheet"></script>
+<script src="./assets/js/dashboard/scriptOLT.js"rel="stylesheet"></script> --}}
+
 @endsection
