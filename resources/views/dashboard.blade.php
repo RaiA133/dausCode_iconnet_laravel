@@ -97,13 +97,13 @@
                                     <table class="table datatable datatable-table">
                                         <thead id="fat-search-area">
 
-                                            {{-- modals button --}}
-                                            @for ($i = 1; $i < sizeof($fat); $i++) 
-                                            @php $dataFAT = $fat[$i][0] @endphp
+                                            {{-- list modals button (KODE FAT) --}}
+                                            @for ($i = 1; $i < sizeof($dataRegion); $i++) 
+                                            @php $dataFAT = $dataRegion[$i][0] @endphp
                                             <tr>
                                                 <td>
                                                     <label>{{ $i }}. </label>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick=" ('{{ $dataFAT }}');">{{ $dataFAT }}</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code" onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
  
                                                 </td>
                                             </th>
@@ -115,7 +115,7 @@
             
 
                                 {{-- modal --}}
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modalFAT" tabindex="-1" aria-labelledby="modalFATLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header pb-2 mx-2">
@@ -159,7 +159,6 @@
                             <h5 class="card-title pb-2 pt-4">Berdasarkan OLT Hostname</h5>
                             <hr class="mt-0 pt-0">
 
-                            <!-- LIST OLT -->
                             <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                                 <div class="datatable-top mb-3">
 
@@ -180,11 +179,13 @@
                                         <form class="d-flex" role="search">
                                             <input id="searchInput" class="form-control me-2" type="search"
                                                 placeholder="Search" aria-label="Search">
-                                            <button id="searchButton" class="btn btn-outline-success me-2"
+                                            <button id="searchButtonOLT" class="btn btn-outline-success me-2"
                                                 type="submit">Search</button>
                                         </form>
                                     </div>
                                     <!-- end FORM SEACRH DATA -->
+
+                                    {{-- @dd($fat) --}}
 
                                 </div>
 
@@ -192,29 +193,27 @@
                                     <table class="table datatable datatable-table">
                                         <thead id="fat-search-area">
 
-                                            {{-- modals button --}}
-                                            {{-- @for ($i = 1; $i < sizeof($fat); $i++) 
-                                            @php $dataFAT = $fat[$i][0] @endphp
+                                            {{-- list modals button (KODE FAT) --}}
+                                            @for ($i = 1; $i < sizeof($dataRegion); $i++) 
+                                            @php $dataOLT = $dataRegion[$i][5] @endphp
                                             <tr>
                                                 <td>
                                                     <label>{{ $i }}. </label>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fat-code" onclick=" ('{{ $dataFAT }}');">{{ $dataFAT }}</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalOLT" class="olt-code" onclick="oltCode('{{ $dataOLT }}');">{{ $dataOLT }}</a>
  
                                                 </td>
                                             </th>
-                                            @endfor --}}
+                                            @endfor
 
                                         </tbody>
                                     </table>
                                 </div>
-            
-
                                 {{-- modal --}}
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modalOLT" tabindex="-1" aria-labelledby="modalOLTLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
                                       <div class="modal-content">
                                         <div class="modal-header pb-2 mx-2">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">FAT details | {{ $region }}</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">OLT details | </h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
                                         </div>
                                         <div class="modal-body pt-0">
@@ -243,8 +242,9 @@
                                     </nav>
                                 </div>
 
+
                             </div>
-                            <!-- end LIST OLT -->
+                            
 
                         </div>
 
@@ -261,7 +261,8 @@
 
 </section>
 
-{{-- mengubah $fat PHP ke JSON, yg dikirim ke app.js --}}
-<script> const fat = '<?php echo json_encode($fat); ?>'; </script>
+{{-- mengubah fat dan OLT PHP ke JSON, yg dikirim ke app.js --}}
+<script> const FAT = '<?php echo json_encode($dataRegion); ?>'; </script>
+<script> const OLT = '<?php echo json_encode($dataRegion); ?>'; </script>
 <script src="{{ asset('app.js') }}"></script>
 @endsection

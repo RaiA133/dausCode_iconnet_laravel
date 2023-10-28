@@ -25,8 +25,8 @@ function performSearch() {
 
 
 // PNEGULANGAN FAT DETAILS, TABLE VERTTICAL //
-    const fatJSON = JSON.parse(fat);
-    const table = document.getElementById('myTable');
+    const fatJSON = JSON.parse(FAT);
+    const tableFAT = document.getElementById('myTable');
     function fatCode(fatCodes){
         let fatTable = [];
         for ( let i = 0; i < fatJSON.length; i++ ) {
@@ -38,7 +38,7 @@ function performSearch() {
         }
         for (let z = 0; z < fatTable[0].length; z++) {
             
-            const row = table.insertRow(); // membuat tbody dan tr didalamnya sekaligus
+            const row = tableFAT.insertRow(); // membuat tbody dan tr didalamnya sekaligus
 
             const fatTH = document.createElement('th');
             fatTH.textContent = fatTable[0][z];
@@ -55,7 +55,6 @@ function performSearch() {
     }
 
     // menghapus / clear table details fat setelah diclose
-    const tableFAT = document.getElementById('myTable');
     document.getElementById('fat-modal-close').addEventListener('click', () => {
         tableFAT.innerHTML = "";
     });
@@ -70,6 +69,8 @@ function performSearch() {
     });
        
 // END FAT //
+
+
 
 
 document.getElementById
