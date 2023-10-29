@@ -42,7 +42,7 @@ function fatCode(fatCodes){
     }
     for (let z = 0; z < fatTable[0].length; z++) {
             
-        const row = tableFAT.insertRow(); // membuat tbody dan tr didalamnya sekaligus
+        const row = tableFAT.insertRow();               // membuat tbody dan tr didalamnya sekaligus
 
         const fatTH = document.createElement('th');
         fatTH.textContent = fatTable[0][z];
@@ -55,6 +55,14 @@ function fatCode(fatCodes){
         const fatTD2 = document.createElement('td');
         fatTD2.textContent = fatTable[1][z];
         row.appendChild(fatTD2);
+
+        // const hasil = `
+        // <tr>
+        //     <th>${fatTable[0][z]}</th>
+        //     <td>:</td>
+        //     <td>${fatTable[1][z]}</td>
+        // </tr>
+        // `;
     }
 }
 
@@ -68,8 +76,8 @@ document.getElementById('modalFAT').addEventListener('click', () => {
     
 // membuat ketika bagian dalam dari modal diklik tidak akan ikut ikutan seperti 
 // parentnya yg menghilangkan details ketika parent/element pembungkusnya diklik
-document.querySelector('#modalFAT .modal-dialog').addEventListener('click', (el) => { // params harus disertakan untuk  
-    el.stopPropagation();                                                                 // menjalankan stopPropagation();
+document.querySelector('#modalFAT .modal-dialog').addEventListener('click', (el) => {       // params harus disertakan untuk  
+    el.stopPropagation();                                                                   // menjalankan stopPropagation();
 });
        
 

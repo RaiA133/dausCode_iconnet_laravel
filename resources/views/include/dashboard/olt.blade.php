@@ -5,11 +5,11 @@
     <hr class="mt-0 pt-0">
 
     <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-        <div class="datatable-top mb-3">
+        <div class="datatable-top">
 
             <div class="datatable-dropdown">
                 <label>
-                    <select class="datatable-selector me-4 border">
+                    <select class="datatable-selector me-4 border pb-3">
                         <option value="5">5</option>
                         <option value="10" selected="">10</option>
                         <option value="15">15</option>
@@ -55,33 +55,36 @@
         {{-- MODAL OLT --}}
         <div class="modal fade" id="modalOLT" tabindex="-1" aria-labelledby="modalOLTLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header pb-2 mx-2">
-                <h1 class="modal-title fs-5" id="modalOLTLabel">
-                    <b>OLT details</b> | <span title="region">{{ $region }}</span> | <span title="Kode OLT" class="fs-5" id="oltModalTitle" ></span>
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="olt-modal-close" style="margin-bottom:-5px;"></button>
-                </div>
-                <div class="modal-body pt-0">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12 py-3">
-                                <div id="map" class="border bg-body-secondary"></div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
-                                <table class="border table table-striped mb-0" id="myTableOLT">
-
-                                    {{-- data OLT detail diulang disini --}}
-
-                                </table>
-                            </div>
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header pb-2 mx-2">
+                    <h1 class="modal-title fs-5" id="modalOLTLabel">
+                        <b>OLT details</b> | <span title="region">{{ $region }}</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="olt-modal-close" style="margin-bottom:-5px;"></button>
                     </div>
-                    
+                    <div class="modal-body pt-0">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="d-sm-flex justify-content-start align-items-center mt-3">
+                                    <label for="oltModalTitle" class="ms-2 col-form-label fw-bold">OLT Hostname : </label>
+                                    <div title="Kode OLT" class="ms-2 col-form-label" id="oltModalTitle" ></div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 py-3">
+                                    <div id="map" class="border bg-body-secondary"></div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
+                                    <table class="border table table-striped mb-0" id="myTableOLT">
+
+                                        {{-- data OLT detail diulang disini --}}
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 
         <div class="datatable-bottom">
             <div class="datatable-info form-text">Showing 1 to 5 of 5 entries</div>

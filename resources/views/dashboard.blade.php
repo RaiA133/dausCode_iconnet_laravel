@@ -16,28 +16,29 @@
     <div class="col-lg-12">
         <div class="row">
             <div class="card">
-                <div class="col-xs-12 card-body px-lg-5 py-4">
+                <div class="card-body px-lg-5 py-4">
                     
-                    <div class="d-flex align-items-center justify-content-between d-block d-sm-flex mt-3">
+                    <div class="d-sm-flex justify-content-between mt-3">
 
                         <!-- Pills Tabs -->
-                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link fw-bold mb-xs-5 active" id="pills-home-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                        aria-selected="true">Kode FAT</button>
+                                        aria-selected="true">Kode FAT
+                                    </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link fw-bold" id="pills-profile-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-profile" type="button" role="tab"
-                                        aria-controls="pills-profile" aria-selected="false" tabindex="-1">OLT
-                                        HOSTNAME</button>
+                                        aria-controls="pills-profile" aria-selected="false" tabindex="-1">OLT HOSTNAME
+                                    </button>
                                 </li>
                             </ul>
 
                         <!-- General Form Elements -->
-                            <div class="d-flex align-items-center">
-                                <label for="regionSelect" class="me-2 fw-bold">Region : </label>
+                            <div class="d-flex align-items-center mb-3">
+                                <label for="regionSelect" class="ps-2 me-2 fw-bold">Region : </label>
                                 <form action="" method="POST">
                                     <select id="regionSelect" class="form-select" onchange="ubahRegion(this.value)" aria-label="Default select example" >
                                         <option value="BANDUNG" {{ (Request::segment(2) == "BANDUNG") ? "selected" : "" }}>Bandung</option>
@@ -58,7 +59,7 @@
 
                     </div>
 
-                    <div class="tab-content pt-2" id="myTabContent">
+                    <div class="tab-content" id="myTabContent">
                         
                         @include('include.dashboard.fat')
                         

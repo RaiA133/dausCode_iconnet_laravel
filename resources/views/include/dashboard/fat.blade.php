@@ -6,7 +6,7 @@
     <!-- LIST FAT -->
     <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 
-        <div class="datatable-top mb-3">
+        <div class="datatable-top">
             
             <div class="datatable-dropdown">
                 <label>
@@ -60,13 +60,17 @@
                 <div class="modal-content">
                     <div class="modal-header pb-2 mx-2">
                         <h1 class="modal-title fs-5" id="modalFATLabelLabel">
-                            <b>FAT details</b> | <span title="region">{{ $region }}</span> | <span title="Kode FAT" id="fatModalTitle" ></span>
+                            <b>FAT details</b> | <span title="region">{{ $region }}</span>
                         </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
                     </div>
                     <div class="modal-body pt-0">
                         <div class="col-12">
                             <div class="row">
+                                <div class="d-sm-flex justify-content-start align-items-center mt-3">
+                                    <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fat Code : </label>
+                                    <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle" ></div>
+                                </div>
                                 <div class="col-lg-6 col-sm-12 py-3">
                                     <div id="map" class="border bg-body-secondary"></div>
                                 </div>
