@@ -67,10 +67,11 @@
                     <div class="modal-body pt-0">
                         <div class="col-12">
                             <div class="row">
-                                <div class="d-sm-flex justify-content-start align-items-center mt-3">
+                                <div class="d-sm-flex justify-content-start align-items-center my-3">
                                     <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fat Code : </label>
                                     <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle" ></div>
                                 </div>
+                                <hr class="mb-0">
                                 <div class="col-lg-6 col-sm-12 py-3">
                                     <div id="map" class="border bg-body-secondary"></div>
                                 </div>
