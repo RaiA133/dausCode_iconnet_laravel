@@ -73,7 +73,41 @@
                                 </div>
                                 <hr class="mb-0">
                                 <div class="col-lg-6 col-sm-12 py-3">
+
+                                    <div id="floating-panel">
+                                        <b>Start: </b>
+                                        <select id="start">
+                                          <option value="Bandung">Bandung</option>
+                                          <option value="Jakarta">Jakarta</option>
+                                          <option value="Gedung Sate">Gedung Sate</option>
+                                          <option value="Lembang">Lembang</option>
+                                          <option value="Dago">Dago</option>
+                                          <option value="Paris Van Java">Paris Van Java</option>
+                                          <option value="Uninus">Uninus</option>
+                                          <option value="Pasteur">Pasteur</option>
+                                          <option value="Tangkuban Perahu">Tangkuban Perahu</option>
+                                          <option value="Ciwidey">Ciwidey</option>
+                                          <option value="Garut">Garut</option>
+                                          <option value="Braga">Braga</option>
+                                        </select>
+                                        <b>End: </b>
+                                        <select id="end">
+                                            <option value="Bandung">Bandung</option>
+                                            <option value="Jakarta">Jakarta</option>
+                                            <option value="Gedung Sate">Gedung Sate</option>
+                                            <option value="Lembang">Lembang</option>
+                                            <option value="Dago">Dago</option>
+                                            <option value="Paris Van Java">Paris Van Java</option>
+                                            <option value="Uninus">Uninus</option>
+                                            <option value="Pasteur">Pasteur</option>
+                                            <option value="Tangkuban Perahu">Tangkuban Perahu</option>
+                                            <option value="Ciwidey">Ciwidey</option>
+                                            <option value="Garut">Garut</option>
+                                            <option value="Braga">Braga</option>
+                                        </select>
+                                      </div>
                                     <div id="map" class="border bg-body-secondary"></div>
+                                    
                                 </div>
                                 <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
                                     <table class="border table table-striped mb-0" id="myTableFAT">
