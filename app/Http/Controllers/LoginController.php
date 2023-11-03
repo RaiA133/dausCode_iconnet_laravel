@@ -25,7 +25,7 @@ class LoginController extends Controller
       if (Auth::attempt($credentials)) {
           // Authentication passed...
           Alert::success('Selamat Datang!!!', 'Anda Berhasil Masuk');
-          return redirect()->intended('/');
+          return redirect()->intended('/dashboard');
       } else {
           // Authentication failed...
           $user = User::where('email', $credentials['email'])->first();

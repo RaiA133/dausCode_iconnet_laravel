@@ -22,13 +22,13 @@
                         <form class="row g-3" action="/admin/store" method="POST">
                             @csrf
                             <div class="col-md-12">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required >
                             </div>
                             <div class="col-md-6">
-                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                <input type="email" name="email" class="form-control" placeholder="Email"required>
                             </div>
                             <div class="col-md-6">
-                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password" min="8">
                             </div>
                             <div class="col-md-12">
                               <select id="inputState" name="role" class="form-select">
