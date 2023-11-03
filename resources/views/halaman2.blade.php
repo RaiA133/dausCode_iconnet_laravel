@@ -11,7 +11,7 @@
         </nav>
     </div><!-- End Page Title -->
     
-    <h1>Halaman 2</h1>
+    <h1>Selamat Datang {{ $auth->name }}</h1>
 
     {{-- {{ dd($data) }} --}}
 @endsection

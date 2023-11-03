@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\mainController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\mainController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -16,10 +18,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return redirect('/dashboard');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::middleware(['auth'])->group(function () {
+  Route::get('/', function () {return redirect('/dashboard');});
+  Route::get('/dashboard', [mainController::class, 'dashboard']);
+  Route::get('/dashboard/{region}', [mainController::class, 'dashboard']);
+  Route::get('/halaman2', [mainController::class, 'halaman2']);
 });
-Route::get('/dashboard', [mainController::class, 'dashboard']);
-Route::get('/dashboard/{region}', [mainController::class, 'dashboard']);
-Route::get('/halaman2', [mainController::class, 'halaman2']);
-// Route::post('/dev', [mainController::class, '_dashboard']);
+
+Route::middleware(['auth', 'role:Administrator'])->group(function () {
+  Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+  Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+  Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
+  Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+  Route::put('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+  Route::delete('/admin/destroy/{id}', [AdminController::class, 'delete'])->name('admin.destroy');
+});
+
+

@@ -57,6 +57,9 @@
 
         <section aria-details="link script js">
                     
+            <!-- Notification Sweet Alert -->
+          @include('sweetalert::alert')
+
             <!-- Vendor JS Files -->
 
             <link href="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" rel="stylesheet">
