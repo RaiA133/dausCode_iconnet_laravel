@@ -84,7 +84,7 @@
 <script src="{{ asset('assets/js/dashboard/scriptFAT.js') }}"></script>
 
 {{-- scriptOLT.js --}}
-<script src="{{ asset('assets/js/dashboard/scriptOLT.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/dashboard/scriptOLT.js') }}"></script> --}}
 
 {{-- <script src="{{ asset('assets/js/dashboard/scriptFAT.js') }}" rel="stylesheet"></script>
 <script src="{{ asset('assets/js/dashboard/scriptOLT.js') }}" rel="stylesheet"></script> --}}
