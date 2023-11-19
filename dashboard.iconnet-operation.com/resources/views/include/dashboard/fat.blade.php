@@ -1,13 +1,53 @@
 <div class="tab-pane fade active show" id="pills-home" role="tabpanel" aria-labelledby="home-tab">
+
+    <div class="row mb-4">
+        <div class="col-6">
+            <input type="text" class="form-control" placeholder="Insert Coordinates Manualy" id="manualLocInput">
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-dark" id="manualLocBtn">Submit & Calculate nearest branch</button>
+        </div>
+        <div id="passwordHelpBlock" class="form-text ms-2">
+            Masukan Longitude dan Latitude, dan wajib dipisahkan oleh koma ( , ) example : -6.901918368189132,
+            107.61895899001425
+        </div>
+    </div>
+    <button type="button" class="btn btn-dark mb-2" id="getLocation">Get Your Location Automatically & Calculate
+        nearest branch</button>
+    <div id="view-hasil" style="margin-top: 20px; font-size: 25px;"></div>
+    <hr>
+    <div id="map"
+        style="{
+  height: 400px;
+  width: 600px;
+}
+.container-table {
+  height: 500px;
+  overflow-y: auto;
+}
+@media only screen and (max-width : 400px) {
+  #map {
+      height: 400px;
+      width: 305px;
+  }     
+}">
+
+</div>
+        <hr>
+        <div id="directionsPanel"></div>
+        <p style="margin-top: -10px;" id="hasil-jarak"></p>
+    <hr>
+
+
     <!-- FAT -->
     <h5 class="card-title pb-2 pt-4">Berdasarkan Kode FAT</h5>
     <hr class="mt-0 pt-0">
-    
+
     <!-- LIST FAT -->
     <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
 
         <div class="datatable-top">
-            
+
             <div class="datatable-dropdown">
                 <label>
                     <select class="datatable-selector me-4 border">
@@ -23,10 +63,9 @@
             <!-- FORM SEACRH DATA FAT-->
             <div class="col-md-5 col-sm-6 top-0 end-0">
                 <form class="d-flex" role="search">
-                    <input id="searchInputFAT" class="form-control me-2" type="search"
-                        placeholder="Search" aria-label="Search">
-                    <button id="searchButtonFAT" class="btn btn-outline-success me-2"
-                        type="submit">Search</button>
+                    <input id="searchInputFAT" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button id="searchButtonFAT" class="btn btn-outline-success me-2" type="submit">Search</button>
                 </form>
             </div>
             <!-- end FORM SEACRH DATA FAT -->
@@ -37,24 +76,33 @@
             <table class="table datatable datatable-table">
                 <thead id="fat-search-area">
 
-                    {{-- list modals button (KODE FAT) --}}
-                    @for ($i = 1; $i < sizeof($dataRegion); $i++) 
-                    @php $dataFAT = $dataRegion[$i][0] @endphp
-                    <tr>
-                        <td>
-                            <label>{{ $i }}. </label>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code" onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
+                  <!-- script untuk menerima $data 
+                    yang berisi data lokasi
+                    dari controller dan mengirimnya ke file javascpt -->
+                <script>
+                    // Simpan jsonData sebagai variabel global
+                    window.jsonData = {!! json_encode($mapsData) !!};
+                </script>
+                  
 
-                        </td>
-                    </th>
-                    @endfor
+                    <!-- list modals button (KODE FAT)-->
+                    @foreach ($data as $i => $row)
+                        @php $dataFAT = $row[0] @endphp
+                        <tr>
+                            <td>
+                                <label>{{ $i + 1 }}. </label>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code"
+                                    onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
+                            </td>
+                        </tr>
+                    @endforeach
 
-                </tbody>
+                    </tbody>
             </table>
         </div>
 
 
-        {{-- MODAL FAT --}}
+        <!-- MODAL FAT-->
         <div class="modal fade" id="modalFAT" tabindex="-1" aria-labelledby="modalFATLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -62,60 +110,56 @@
                         <h1 class="modal-title fs-5" id="modalFATLabelLabel">
                             <b>FAT details</b> | <span title="region">{{ $region }}</span>
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="fat-modal-close" style="margin-bottom:-5px;"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            id="fat-modal-close" style="margin-bottom:-5px;"></button>
                     </div>
                     <div class="modal-body pt-0">
                         <div class="col-12">
                             <div class="row">
                                 <div class="d-sm-flex justify-content-start align-items-center my-3">
                                     <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fat Code : </label>
-                                    <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle" ></div>
+                                    <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle"></div>
+                                </div>
+                                <div class="d-sm-flex justify-content-center align-items-center my-3">
+                                    <button id="getLocation" class="mt-2 btn btn-warning">Lokasi Saya</button>
                                 </div>
                                 <hr class="mb-0">
-                                <div class="col-lg-6 col-sm-12 py-3">
 
-                                    <div id="floating-panel">
-                                        <b>Start: </b>
-                                        <select id="start">
-                                          <option value="Bandung">Bandung</option>
-                                          <option value="Jakarta">Jakarta</option>
-                                          <option value="Gedung Sate">Gedung Sate</option>
-                                          <option value="Lembang">Lembang</option>
-                                          <option value="Dago">Dago</option>
-                                          <option value="Paris Van Java">Paris Van Java</option>
-                                          <option value="Uninus">Uninus</option>
-                                          <option value="Pasteur">Pasteur</option>
-                                          <option value="Tangkuban Perahu">Tangkuban Perahu</option>
-                                          <option value="Ciwidey">Ciwidey</option>
-                                          <option value="Garut">Garut</option>
-                                          <option value="Braga">Braga</option>
-                                        </select>
-                                        <b>End: </b>
-                                        <select id="end">
-                                            <option value="Bandung">Bandung</option>
-                                            <option value="Jakarta">Jakarta</option>
-                                            <option value="Gedung Sate">Gedung Sate</option>
-                                            <option value="Lembang">Lembang</option>
-                                            <option value="Dago">Dago</option>
-                                            <option value="Paris Van Java">Paris Van Java</option>
-                                            <option value="Uninus">Uninus</option>
-                                            <option value="Pasteur">Pasteur</option>
-                                            <option value="Tangkuban Perahu">Tangkuban Perahu</option>
-                                            <option value="Ciwidey">Ciwidey</option>
-                                            <option value="Garut">Garut</option>
-                                            <option value="Braga">Braga</option>
-                                        </select>
-                                      </div>
-                                    <div id="map" class="border bg-body-secondary"></div>
-                                    
+                                <div id="">
+                                    <strong>Start:</strong>
+                                    <select id="start"></select>
+                                    <br />
+                                    <strong>End:</strong>
+                                    <select id="end">
+                                        <option>=== Pilih Tujuan ===</option>
+                                        <option value="Bandung">Bandung</option>
+                                        <option value="Soreang">Soreang</option>
+                                        <option value="Gedung Sate">Gedung Sate</option>
+                                        <option value="Lembang">Lembang</option>
+                                        <option value="Dago">Dago</option>
+                                        <option value="Katapang">Paris Van Java</option>
+                                        <option value="Uninus">Uninus</option>
+                                        <option value="Pasteur">Pasteur</option>
+                                        <option value="Banjaran">Tangkuban Perahu</option>
+                                        <option value="Ciwidey">Ciwidey</option>
+                                        <option value="Braga">Braga</option>
+                                    </select>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-12 py-3">
+                                    <div id="container">
+                                        <div id="map"></div>
+                                    </div>
+
                                 </div>
                                 <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
                                     <table class="border table table-striped mb-0" id="myTableFAT">
-
-                                        {{-- data FAT detail diulang disini --}}
+                                        <!-- data FAT details diulang disini-->
 
                                     </table>
                                 </div>
+                                <div id="result" class="col-lg-6 col-sm-12 table-responsive pt-lg-3"></div>
                             </div>
                         </div>
                     </div>

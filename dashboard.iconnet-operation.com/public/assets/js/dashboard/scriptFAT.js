@@ -1,3 +1,39 @@
+let userLatitude;
+let userLongitude;
+
+const getLocation = document.getElementById("getLocation");
+getLocation.addEventListener("click", () => {
+    navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords;
+        userLatitude = latitude;
+        userLongitude = longitude;
+
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          let hasil = data.lat + " " + data.lon;
+          let alamat = data.display_name;
+          console.log(alamat);
+          console.log(hasil);
+      
+          // Tambahkan opsi baru ke elemen select
+          const startSelect = document.getElementById("start");
+          const newOption = document.createElement("option");
+          newOption.value = hasil; // Atau sesuaikan dengan nilai yang sesuai
+          newOption.text = alamat;
+          startSelect.add(newOption);
+      
+          // Tampilkan hasil alamat
+          document.getElementById("view-hasil").innerHTML =
+          alamat;
+        })
+        .catch(() => {
+          console.log("error fetching data from API");
+        });
+    });
+});
+
 
 console.log('FAT')
 
