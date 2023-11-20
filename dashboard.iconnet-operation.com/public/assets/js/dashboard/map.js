@@ -129,7 +129,8 @@ console.log(kota);
                 const [latTujuan, lonTujuan] = nilai.split(',').map(parseFloat);
     
                 // Ganti URL gambar sesuai dengan lokasi gambar yang Anda ingin gunakan
-                const customIcon = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/icon-maps.png'; // Ganti dengan URL gambar yang diinginkan
+                const customIcon = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/Iconnet.png'; // Ganti dengan URL gambar yang diinginkan
+                // const customIcon = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/icon-maps.png'; // Ganti dengan URL gambar yang diinginkan
                 // const customIcon = 'https://cdn-icons-png.flaticon.com/512/5988/5988246.png'; // Ganti dengan URL gambar yang diinginkan
     
                 // Menambahkan marker untuk setiap lokasi dengan gambar kustom
@@ -159,7 +160,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer, userLat
     const request = {
         origin: { lat: userLatitude, lng: userLongitude },
         destination: { lat: latTujuan, lng: lonTujuan },
-        travelMode: 'DRIVING',
+        travelMode: 'WALKING',
     };
 
     directionsService.route(request, (result, status) => {
