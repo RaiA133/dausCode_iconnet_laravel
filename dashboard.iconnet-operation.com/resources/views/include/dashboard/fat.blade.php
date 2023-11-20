@@ -32,10 +32,10 @@
   }     
 }">
 
-</div>
-        <hr>
-        <div id="directionsPanel"></div>
-        <p style="margin-top: -10px;" id="hasil-jarak"></p>
+    </div>
+    <hr>
+    <div id="directionsPanel"></div>
+    <p style="margin-top: -10px;" id="hasil-jarak"></p>
     <hr>
 
 
@@ -76,28 +76,47 @@
             <table class="table datatable datatable-table">
                 <thead id="fat-search-area">
 
-                  <!-- script untuk menerima $data 
+                    <!-- script untuk menerima $data
                     yang berisi data lokasi
                     dari controller dan mengirimnya ke file javascpt -->
-                <script>
-                    // Simpan jsonData sebagai variabel global
-                    window.jsonData = {!! json_encode($mapsData) !!};
-                </script>
-                  
+                    <script>
+                        // Simpan jsonData sebagai variabel global
+                        window.jsonData = {!! json_encode($mapsData) !!};
+                    </script>
+
 
                     <!-- list modals button (KODE FAT)-->
-                    @foreach ($data as $i => $row)
-                        @php $dataFAT = $row[0] @endphp
-                        <tr>
-                            <td>
-                                <label>{{ $i + 1 }}. </label>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code"
-                                    onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                    <table class="table">
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>OLT</th>
+                              <th>FDT</th>
+                              <th>FAT</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($data as $i => $row)
+                              @php $dataOLT = $row[9] @endphp
+                              @php $dataFDT = $row[0] @endphp
+                              @php $dataFAT = $row[0] @endphp
+                              <tr>
+                                  <td>{{ $loop->iteration }}</td>
+                                  <td>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code"
+                                        onclick="fatCode('{{ $dataOLT }}');">{{ $dataOLT }}</a>
+                                </td>
+                                  <td>
+                                      <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code"
+                                          onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
+                                  </td>
 
-                    </tbody>
+                              </tr>
+                          @endforeach
+                      </tbody>
+                  </table>
+                  
+
             </table>
         </div>
 
@@ -108,7 +127,7 @@
                 <div class="modal-content">
                     <div class="modal-header pb-2 mx-2">
                         <h1 class="modal-title fs-5" id="modalFATLabelLabel">
-                            <b>FAT details</b> | <span title="region">{{ $region }}</span>
+                            <b>FAT REGION</b> | <span title="region">{{ $region }}</span>
                         </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                             id="fat-modal-close" style="margin-bottom:-5px;"></button>
@@ -120,46 +139,15 @@
                                     <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fat Code : </label>
                                     <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle"></div>
                                 </div>
-                                <div class="d-sm-flex justify-content-center align-items-center my-3">
-                                    <button id="getLocation" class="mt-2 btn btn-warning">Lokasi Saya</button>
-                                </div>
                                 <hr class="mb-0">
-
-                                <div id="">
-                                    <strong>Start:</strong>
-                                    <select id="start"></select>
-                                    <br />
-                                    <strong>End:</strong>
-                                    <select id="end">
-                                        <option>=== Pilih Tujuan ===</option>
-                                        <option value="Bandung">Bandung</option>
-                                        <option value="Soreang">Soreang</option>
-                                        <option value="Gedung Sate">Gedung Sate</option>
-                                        <option value="Lembang">Lembang</option>
-                                        <option value="Dago">Dago</option>
-                                        <option value="Katapang">Paris Van Java</option>
-                                        <option value="Uninus">Uninus</option>
-                                        <option value="Pasteur">Pasteur</option>
-                                        <option value="Banjaran">Tangkuban Perahu</option>
-                                        <option value="Ciwidey">Ciwidey</option>
-                                        <option value="Braga">Braga</option>
-                                    </select>
-                                    </select>
                                 </div>
-
-                                <div class="col-lg-6 col-sm-12 py-3">
-                                    <div id="container">
-                                        <div id="map"></div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-6 col-sm-12 table-responsive pt-lg-3">
+                                <div class="col-lg-12 col-sm-12 table-responsive pt-lg-3">
                                     <table class="border table table-striped mb-0" id="myTableFAT">
                                         <!-- data FAT details diulang disini-->
 
                                     </table>
                                 </div>
-                                <div id="result" class="col-lg-6 col-sm-12 table-responsive pt-lg-3"></div>
+                                <div id="result" class="col-lg-12 col-sm-12 table-responsive pt-lg-3"></div>
                             </div>
                         </div>
                     </div>

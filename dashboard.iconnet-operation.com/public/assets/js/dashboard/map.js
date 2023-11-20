@@ -111,14 +111,13 @@ console.log(kota);
 
     }
 
-
-    var map;
+    let map;
 
     function initMap(userLatitude, userLongitude) {
         // The map, centered on user's location
         const center = { lat: userLatitude, lng: userLongitude };
         const options = { zoom: 11, scaleControl: true, center: center };
-        const map = new google.maps.Map(document.getElementById('map'), options);
+        map = new google.maps.Map(document.getElementById('map'), options);
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({ map: map, panel: document.getElementById('directionsPanel') });
         const markers = [];
@@ -130,8 +129,10 @@ console.log(kota);
     
                 // Ganti URL gambar sesuai dengan lokasi gambar yang Anda ingin gunakan
                 const customIcon = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/Iconnet.png'; // Ganti dengan URL gambar yang diinginkan
-                // const customIcon = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/icon-maps.png'; // Ganti dengan URL gambar yang diinginkan
-                // const customIcon = 'https://cdn-icons-png.flaticon.com/512/5988/5988246.png'; // Ganti dengan URL gambar yang diinginkan
+                const myMarker = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/myMarker.png'; // Ganti dengan URL gambar yang diinginkan
+    
+                // Menentukan ikon berdasarkan lokasi
+                const iconUrl = (key === 'SAYA') ? myMarker : customIcon;
     
                 // Menambahkan marker untuk setiap lokasi dengan gambar kustom
                 const marker = new google.maps.Marker({
@@ -139,7 +140,7 @@ console.log(kota);
                     map: map,
                     title: key,
                     icon: {
-                        url: customIcon,
+                        url: iconUrl,
                         scaledSize: new google.maps.Size(30, 30) // Sesuaikan ukuran gambar sesuai kebutuhan
                     },
                 });
@@ -153,6 +154,7 @@ console.log(kota);
             }
         }
     }
+    
     
 
 // Fungsi untuk menghitung dan menampilkan rute

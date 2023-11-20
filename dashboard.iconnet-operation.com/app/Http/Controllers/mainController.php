@@ -19,6 +19,19 @@ class mainController extends Controller
     });
     //data yang sudah di filter
     $data = $filteredData;
+
+// ===========================progress mencari data yang menginduk pada data olt
+  //   $dataOLT = array_filter($data, function ($row) {
+  //     // Ganti 9 dengan indeks yang sesuai
+  //     $targetValue = $row[9]; 
+  
+  //     // Sesuaikan kondisi sesuai dengan kriteria yang Anda inginkan
+  //     return $row[9] == $targetValue;
+  // });
+  
+  // dd($dataOLT);
+  
+    
     
     // dari data yang sudah di filter, mengambil item 0 dan 7 
     // untuk kebutuhan maps
@@ -33,7 +46,7 @@ class mainController extends Controller
     }
     
     
-    // dd($mapsData);
+    // dd($data);
     
     $auth = Auth::user();
     return view('dashboard', [
