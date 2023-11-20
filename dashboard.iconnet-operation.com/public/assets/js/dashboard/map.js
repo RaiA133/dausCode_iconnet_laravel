@@ -52,30 +52,6 @@ for (var i = 0; i < jsonData.length; i++) {
 
 // Resulting object
 console.log(kota);
-    // Database JSON (sampel diambil dari data Checkpoint Asset 21082023)
-    // const kota = {
-    //   'SORA063'	: '-6.999135547248859, 107.57924121209332',
-    //   'SORA064'	: '-6.9936913639391936, 107.55526259794324',
-    //   'SORA065'	: '-6.996076735737858, 107.5293846453091',
-    //   'SORA066'	: '-7.020355719973526, 107.53062919092591',
-    //   'SORA067'	: '-7.047911447914237, 107.58686950998838',
-    //   'SORA068'	: '-7.007244817358766, 107.62353817678061',
-    //   'SORA069'	: '-6.978017791940694, 107.636524996212',
-    //   'SORA070'	: '-6.971331163629762, 107.61701004264536',
-    //   'SORA071'	: '-6.945342023295532, 107.64513657720076',
-    //   'SORA072'	: '-6.93155409755517, 107.64333092382374',
-    //   'SORA073'	: '-6.913904964103864, 107.70409812788006',
-    //   'SORA074'	: '-6.904666482811832, 107.66173470476016',
-    //   'SORA075'	: '-6.992080079306918, 107.64728947270439',
-    //   'SORA076'	: '-7.040605502346852, 107.55499277070763',
-    //   'SORA077'	: '-7.036745710703568, 107.54006140044184',
-    //   'SORA078'	: '-6.971400098568533, 107.6058288777576',
-    //   'SORA079'	: '-6,96292, 107,59694',
-    //   'SORA080'	: '-6,96246, 107,59696',
-    //   'SORA081'	: '-6,96248, 107,59668',
-    //   'SORA082'	: '-6,96345, 107,59619',
-    //   'SORA083'	: '-6,96334, 107,59643'
-    // };
 
         
 
@@ -135,37 +111,48 @@ console.log(kota);
 
     }
 
+
     var map;
+
     function initMap(userLatitude, userLongitude) {
         // The map, centered on user's location
         const center = { lat: userLatitude, lng: userLongitude };
         const options = { zoom: 11, scaleControl: true, center: center };
         const map = new google.maps.Map(document.getElementById('map'), options);
         const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer({ map: map, panel: document.getElementById('directionsPanel') });
-    const markers = [];
-
-    for (let key in kota) {
-        if (kota.hasOwnProperty(key)) {
-            const nilai = kota[key];
-            const [latTujuan, lonTujuan] = nilai.split(',').map(parseFloat);
-
-            // Menambahkan marker untuk setiap lokasi
-            const marker = new google.maps.Marker({
-                position: { lat: latTujuan, lng: lonTujuan },
-                map: map,
-                title: key,
-            });
-
-            // Menambahkan event listener untuk setiap marker
-            marker.addListener('click', () => {
-                calculateAndDisplayRoute(directionsService, directionsRenderer, userLatitude, userLongitude, latTujuan, lonTujuan);
-            });
-
-            markers.push(marker);
+        const directionsRenderer = new google.maps.DirectionsRenderer({ map: map, panel: document.getElementById('directionsPanel') });
+        const markers = [];
+    
+        for (let key in kota) {
+            if (kota.hasOwnProperty(key)) {
+                const nilai = kota[key];
+                const [latTujuan, lonTujuan] = nilai.split(',').map(parseFloat);
+    
+                // Ganti URL gambar sesuai dengan lokasi gambar yang Anda ingin gunakan
+                const customIcon = 'https://dashboard.iconnet-operation.com/assets/img/iconnet/icon-maps.png'; // Ganti dengan URL gambar yang diinginkan
+                // const customIcon = 'https://cdn-icons-png.flaticon.com/512/5988/5988246.png'; // Ganti dengan URL gambar yang diinginkan
+    
+                // Menambahkan marker untuk setiap lokasi dengan gambar kustom
+                const marker = new google.maps.Marker({
+                    position: { lat: latTujuan, lng: lonTujuan },
+                    map: map,
+                    title: key,
+                    icon: {
+                        url: customIcon,
+                        scaledSize: new google.maps.Size(30, 30) // Sesuaikan ukuran gambar sesuai kebutuhan
+                    },
+                });
+    
+                // Menambahkan event listener untuk setiap marker
+                marker.addListener('click', () => {
+                    calculateAndDisplayRoute(directionsService, directionsRenderer, userLatitude, userLongitude, latTujuan, lonTujuan);
+                });
+    
+                markers.push(marker);
+            }
         }
     }
-}
+    
 
 // Fungsi untuk menghitung dan menampilkan rute
 function calculateAndDisplayRoute(directionsService, directionsRenderer, userLatitude, userLongitude, latTujuan, lonTujuan) {
