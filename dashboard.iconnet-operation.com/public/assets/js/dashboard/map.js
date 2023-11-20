@@ -160,7 +160,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer, userLat
     const request = {
         origin: { lat: userLatitude, lng: userLongitude },
         destination: { lat: latTujuan, lng: lonTujuan },
-        travelMode: 'WALKING',
+        travelMode: 'DRIVING',
     };
 
     directionsService.route(request, (result, status) => {
