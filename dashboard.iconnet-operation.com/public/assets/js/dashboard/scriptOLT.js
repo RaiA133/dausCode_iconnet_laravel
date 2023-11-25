@@ -1,28 +1,25 @@
 console.log('OLT')
 
-// FUNGSI SERCING DATA //
-function performSearchOLT() {
-    const searchInputOLT = document.getElementById("searchInputOLT").value.toLowerCase();
-    const oltSearchArea = document.getElementById("olt-search-area");
-    const tableRows = oltSearchArea.querySelectorAll("tr");
 
-    tableRows.forEach(row => {
-        const rowData = Array.from(row.querySelectorAll("td")).map(cell => cell.textContent.toLowerCase());
-        if (rowData.some(cellText => cellText.includes(searchInputOLT))) {
-            row.style.display = ""; // menampilkan baris yang sesuai dengan data
+// REALTIME SEARCH OLT //
+
+const searchOLT = document.getElementById('searchInputOLT');
+const items = document.querySelectorAll('#tbodyOLT tr');
+
+searchOLT.addEventListener('input', (e) => searchDataOLT(e.target.value));
+
+function searchDataOLT(search) {
+    items.forEach((item) => {
+        const oltText = item.querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+        if (oltText.includes(search.toLowerCase())) {
+            item.classList.remove('d-none');
         } else {
-            row.style.display = "none"; // menghilangkan baris yang tidak sesuai dengan data
+            item.classList.add('d-none');
         }
     });
 }
 
-
-const searchButtonOLT = document.getElementById("searchButtonOLT");
-searchButtonOLT.addEventListener("click", performSearchOLT);
-
-// menghentikan reload halaman ketika serach button ditekan dengan enter
-document.getElementById('searchButtonOLT').addEventListener('click', (e) => { e.preventDefault() });
-// end FUNGSI SERCING DATA //
 
 // PNEGULANGAN FAT DETAILS, TABLE VERTTICAL //
 const oltJSON = JSON.parse(regionData);

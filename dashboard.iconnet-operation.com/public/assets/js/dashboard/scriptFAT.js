@@ -1,3 +1,23 @@
+// REALTIME SEARCH FAT //
+
+const searchOLT = document.getElementById('searchInputFAT');
+const items = document.querySelectorAll('#tbodyFAT tr');
+
+searchOLT.addEventListener('input', (e) => searchDataFAT(e.target.value));
+
+function searchDataFAT(search) {
+    items.forEach((item) => {
+        const oltText = item.querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+        if (oltText.includes(search.toLowerCase())) {
+            item.classList.remove('d-none');
+        } else {
+            item.classList.add('d-none');
+        }
+    });
+}
+
+
 let userLatitude;
 let userLongitude;
 

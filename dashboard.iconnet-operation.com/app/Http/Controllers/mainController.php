@@ -9,19 +9,19 @@ use Illuminate\Support\Facades\Http;
 class mainController extends Controller
 {
   public function dashboard(Request $request, $region = 'BANDUNG') {
-    $response = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/FDT_FAT!A5:AD1000?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
+    $response = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/FDT_FAT!A5:AD2000?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
     $data = $response->json();
     $dataRegion = $data["values"];
 
-    // Filter data by region
+    // ================== Filter data by region untuk mencari data berdasarkan region
     $filteredData = array_filter($data['values'], function ($row) use ($region) {
         return strcasecmp($row[13], $region) === 0;
     });
     //data yang sudah di filter
     $data = $filteredData;
     
-    // dari data yang sudah di filter, mengambil item 0 dan 7 
-    // untuk kebutuhan maps
+    // ================ dari data yang sudah di filter, mengambil item 0 dan 7 
+    // ================ untuk kebutuhan maps karena di dalamnya ada titik koordinat
     $mapsData = [];
     foreach ($data as $item) {
         // Mengambil elemen ke-0 dan ke-7 dari setiap array
@@ -33,6 +33,7 @@ class mainController extends Controller
     }
 
     // ======================== data detail untuk detail data setlah di klik icon
+    // ======================== muncul keterangan detail di maps nya
     $dataDetail = [];
     $elementCount = 26; // Jumlah elemen yang diambil dari setiap array
     
