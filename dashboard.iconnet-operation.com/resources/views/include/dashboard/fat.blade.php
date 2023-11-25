@@ -38,6 +38,71 @@
     <p style="margin-top: -10px;" id="hasil-jarak"></p>
     <hr>
 
+    <hr>
+    <div class="container">
+        <h3>Detail FAT</h3>
+        <table class="table" id="detail-fat">
+            <tbody>
+                <tr>
+                    <th>Label Lapangan</th>
+                    <td id="index-0"></td>
+                    <th>LABEL ICRM</th>
+                    <td id="index-1"></td>
+
+                </tr>
+                <tr>
+                    <th>INISIAL ODP</th>
+                    <td id="index-3"></td>
+                    <th>JENIS ODP</th>
+                    <td id="index-4"></td>
+                </tr>
+                <tr>
+                    <th>KOORDINAT</th>
+                    <td id="index-7"></td>
+                    <th>STATUS FAT</th>
+                    <td id="index-8"></td>
+                </tr>
+                <tr>
+                    <th>HOSTNAME OLT</th>
+                    <td id="index-9"></td>
+                    <th>BRAND OLT</th>
+                    <td id="index-10"></td>
+                </tr>
+                <tr>
+                    <th>ASAL OLT</th>
+                    <td id="index-11"></td>
+                    <th>BASE OLT</th>
+                    <td id="index-12"></td>
+                </tr>
+                <tr>
+                    <th>KAB/KOTA</th>
+                    <td id="index-14"></td>
+                    <th>CLUSTER</th>
+                    <td id="index-15"></td>
+                </tr>
+                <tr>
+                    <th>KAPASITAS</th>
+                    <td id="index-16"></td>
+                    <th>HC</th>
+                    <td id="index-17"></td>
+
+                </tr>
+                <tr>
+                    <th>IDLE</th>
+                    <td id="index-18"></td>
+                    <th>UTILITY</th>
+                    <td id="index-19"></td>
+                <tr>
+                    <th>TANGGAL INSTALASI</th>
+                    <td id="index-20"></td>
+                    <th>TANGGAL INSTALASI2</th>
+                    <td id="index-21"></td>
+                </tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- FAT -->
     <h5 class="card-title pb-2 pt-4">Berdasarkan Kode FAT</h5>
@@ -76,46 +141,49 @@
             <table class="table datatable datatable-table">
                 <thead id="fat-search-area">
 
-                    <!-- script untuk menerima $data
+                    <!-- script untuk menerima $mapData
                     yang berisi data lokasi
                     dari controller dan mengirimnya ke file javascpt -->
                     <script>
-                        // Simpan jsonData sebagai variabel global
+                        // Simpan jsonData sebagai variabel global  
                         window.jsonData = {!! json_encode($mapsData) !!};
+                        window.jsonDataDetail = {!! json_encode($data) !!};
                     </script>
 
 
                     <!-- list modals button (KODE FAT)-->
                     <table class="table">
-                      <thead>
-                          <tr>
-                              <th>No</th>
-                              <th>OLT</th>
-                              <th>FDT</th>
-                              <th>FAT</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($data as $i => $row)
-                              @php $dataOLT = $row[9] @endphp
-                              @php $dataFDT = $row[0] @endphp
-                              @php $dataFAT = $row[0] @endphp
-                              <tr>
-                                  <td>{{ $loop->iteration }}</td>
-                                  <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code"
-                                        onclick="fatCode('{{ $dataOLT }}');">{{ $dataOLT }}</a>
-                                </td>
-                                  <td>
-                                      <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT" class="fat-code"
-                                          onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
-                                  </td>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>OLT</th>
+                                <th>FDT</th>
+                                <th>FAT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $i => $row)
+                                @php $dataOLT = $row[9] @endphp
+                                @php $dataFDT = $row[0] @endphp
+                                @php $dataFAT = $row[0] @endphp
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT"
+                                            class="fat-code"
+                                            onclick="fatCode('{{ $dataOLT }}');">{{ $dataOLT }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalFAT"
+                                            class="fat-code"
+                                            onclick="fatCode('{{ $dataFAT }}');">{{ $dataFAT }}</a>
+                                    </td>
 
-                              </tr>
-                          @endforeach
-                      </tbody>
-                  </table>
-                  
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
 
             </table>
         </div>
@@ -140,29 +208,29 @@
                                     <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle"></div>
                                 </div>
                                 <hr class="mb-0">
-                                </div>
-                                <div class="col-lg-12 col-sm-12 table-responsive pt-lg-3">
-                                    <table class="border table table-striped mb-0" id="myTableFAT">
-                                        <!-- data FAT details diulang disini-->
-
-                                    </table>
-                                </div>
-                                <div id="result" class="col-lg-12 col-sm-12 table-responsive pt-lg-3"></div>
                             </div>
+                            <div class="col-lg-12 col-sm-12 table-responsive pt-lg-3">
+                                <table class="border table table-striped mb-0" id="myTableFAT">
+                                    <!-- data FAT details diulang disini-->
+
+                                </table>
+                            </div>
+                            <div id="result" class="col-lg-12 col-sm-12 table-responsive pt-lg-3"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="datatable-bottom">
-            <div class="datatable-info form-text">Showing 1 to 5 of 5 entries</div>
-            <nav class="datatable-pagination">
-                <ul class="datatable-pagination-list"></ul>
-            </nav>
-        </div>
-
     </div>
-    <!-- end LIST FAT -->
+
+    <div class="datatable-bottom">
+        <div class="datatable-info form-text">Showing 1 to 5 of 5 entries</div>
+        <nav class="datatable-pagination">
+            <ul class="datatable-pagination-list"></ul>
+        </nav>
+    </div>
+
+</div>
+<!-- end LIST FAT -->
 
 </div>

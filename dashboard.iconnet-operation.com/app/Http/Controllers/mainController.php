@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 class mainController extends Controller
 {
   public function dashboard(Request $request, $region = 'BANDUNG') {
-    $response = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/FDT_FAT!A5:N1000?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
+    $response = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/FDT_FAT!A5:AD1000?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
     $data = $response->json();
     $dataRegion = $data["values"];
 
@@ -19,19 +19,6 @@ class mainController extends Controller
     });
     //data yang sudah di filter
     $data = $filteredData;
-
-// ===========================progress mencari data yang menginduk pada data olt
-  //   $dataOLT = array_filter($data, function ($row) {
-  //     // Ganti 9 dengan indeks yang sesuai
-  //     $targetValue = $row[9]; 
-  
-  //     // Sesuaikan kondisi sesuai dengan kriteria yang Anda inginkan
-  //     return $row[9] == $targetValue;
-  // });
-  
-  // dd($dataOLT);
-  
-    
     
     // dari data yang sudah di filter, mengambil item 0 dan 7 
     // untuk kebutuhan maps
@@ -44,7 +31,22 @@ class mainController extends Controller
         // Menambahkan data ke dalam array $mapsData
         $mapsData[] = [$element0, $element7];
     }
+
+    // ======================== data detail untuk detail data setlah di klik icon
+    $dataDetail = [];
+    $elementCount = 26; // Jumlah elemen yang diambil dari setiap array
     
+    foreach ($data as $item) {
+        $dataDetailItem = [];
+    
+        // Menggunakan loop for untuk mengambil elemen dari setiap array
+        for ($i = 0; $i < $elementCount; $i++) {
+            $dataDetailItem[] = $item[$i];
+        }
+    
+        // Menambahkan data ke dalam array $dataDetail
+        $dataDetail[] = $dataDetailItem;
+    }
     
     // dd($data);
     
@@ -52,7 +54,7 @@ class mainController extends Controller
     return view('dashboard', [
         "title" => "Dashboard",
         "dataRegion" => $dataRegion,
-        "data" => $data,
+        "data" => $dataDetail,
         "region" => $region,
         "auth" => $auth,
         "mapsData" => $mapsData,
