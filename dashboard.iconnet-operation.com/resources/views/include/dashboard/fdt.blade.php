@@ -38,7 +38,7 @@
 
                         @foreach ($data as $i => $row)
                             @php
-                                $dataFDT = $row[3];
+                                $dataFDT = $row[2];
                             @endphp
 
                             @if (!in_array($dataFDT, $fdtTracker))
@@ -79,8 +79,8 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="d-sm-flex justify-content-start align-items-center my-3">
-                                <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fdt Code :<h4
-                                  id="fdt-3" class="ms-2 col-form-label fw-bold"></h4> </label>
+                                {{-- <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fdt Code :<h4
+                                  id="fdt-2" class="ms-2 col-form-label fw-bold"></h4> </label> --}}
                                 <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle"></div>
                             </div>
                             <hr class="mb-0">
@@ -143,6 +143,10 @@
                                         <td id="fdt-20"></td>
                                         <th>TANGGAL INSTALASI2</th>
                                         <td id="fdt-21"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Jumlah Fat di FDT ini</th>
+                                        <td id="fdt-22"></td>
                                     </tr>
 
                                     </tr>

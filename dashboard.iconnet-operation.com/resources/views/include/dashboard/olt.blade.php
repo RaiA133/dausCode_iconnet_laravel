@@ -158,6 +158,12 @@
                                         <td id="olt-21"></td>
                                     </tr>
 
+                                    <tr>
+                                      
+                                        <th>Jumlah Fat</th>
+                                        <td id="olt-22"></td>
+                                    </tr>
+
                                     </tr>
                                 </tbody>
                             </table>

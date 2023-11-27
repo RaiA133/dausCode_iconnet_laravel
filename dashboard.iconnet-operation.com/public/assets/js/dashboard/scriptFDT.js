@@ -23,9 +23,16 @@ function handleLihatClickFDT(dataFDT) {
   // Mendapatkan key dari dataFAT yang diklik
   const keyfdt = dataFDT;
 
+      // function untuk mencari jumlah fat dari satu fdt
+      const jumlahFatPadaFdt = jsonDataDetail.filter(
+        (element) => element[2] === keyfdt
+    ).length;
+
+    document.getElementById("fdt-22").innerHTML = jumlahFatPadaFdt
+
   // Mencari detail dari jsonDataDetail berdasarkan key
   const cariDetailFDT = jsonDataDetail.find(
-      (element) => element[3] === keyfdt
+      (element) => element[2] === keyfdt
   );
 
   if (cariDetailFDT) {
