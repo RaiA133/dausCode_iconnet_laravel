@@ -4,12 +4,12 @@ console.log('OLT')
 // REALTIME SEARCH OLT //
 
 const searchOLT = document.getElementById('searchInputOLT');
-const items = document.querySelectorAll('#tbodyOLT tr');
+const itemsOLT = document.querySelectorAll('#tbodyOLT tr');
 
 searchOLT.addEventListener('input', (e) => searchDataOLT(e.target.value));
 
 function searchDataOLT(search) {
-    items.forEach((item) => {
+    itemsOLT.forEach((item) => {
         const oltText = item.querySelector('td:nth-child(2)').textContent.toLowerCase();
 
         if (oltText.includes(search.toLowerCase())) {
@@ -21,48 +21,67 @@ function searchDataOLT(search) {
 }
 
 
-// PNEGULANGAN FAT DETAILS, TABLE VERTTICAL //
-const oltJSON = JSON.parse(regionData);
-const tableOLT = document.getElementById('myTableOLT'); // table penampung OLT
 
-function oltCode(oltCodes){
-    document.getElementById('oltModalTitle').innerHTML = oltCodes // Judul Modal diberi OLT
-    let oltTable = [];
-    for ( let i = 0; i < oltJSON.length; i++ ) {
-        if ( oltJSON[i][5] === oltCodes ) {             // jika params == data region di kolom 5 (JIKA DATA PENCARI BUKAN DARI A, BISA UBAH BERDASARKAN 1 = A, INI 5 = E (KOLOM E = OLT))
-            let oltJudul = oltJSON[0];
-            let oltDetail = oltJSON[i];
-            oltTable = {0:oltJudul, 1:oltDetail}
-        }
+// Memeriksa apakah jsonDataFatKey telah berhasil dikirim
+// console.log('jsonDataFatKey:', window.jsonDataFatKey);
+// Menampilkan data keseluruhan dari jsonDataDetail
+console.log("Data FAT keseluruhan:", jsonDataDetail);
+
+// Fungsi untuk menangani klik pada tombol Lihat
+function handleLihatClickOlt(dataOLT) {
+    // Mendapatkan key dari dataOLT yang diklik
+    const keyOlt = dataOLT;
+
+    // Mencari detail dari jsonDataDetail berdasarkan key
+    const cariDetailOLT = jsonDataDetail.find(
+        (element) => element[9] === keyOlt
+    );
+
+    if (cariDetailOLT) {
+
+      // Ambil nilai dengan indeks 0, 1, 2, dan 3
+      const selectOltDetail = cariDetailOLT.slice(0, 22);
+
+      // Update nilai pada tabel HTML
+      document.getElementById("olt-0").innerText =
+          selectOltDetail[0];
+      document.getElementById("olt-1").innerText =
+          selectOltDetail[1];
+      document.getElementById("olt-3").innerText =
+          selectOltDetail[3];
+      document.getElementById("olt-4").innerText =
+          selectOltDetail[4];
+      document.getElementById("olt-7").innerText =
+          selectOltDetail[7];
+      document.getElementById("olt-8").innerText =
+          selectOltDetail[8];
+      document.getElementById("olt-9").innerText =
+          selectOltDetail[9];
+      document.getElementById("olt-10").innerText =
+          selectOltDetail[10];
+      document.getElementById("olt-11").innerText =
+          selectOltDetail[11];
+      document.getElementById("olt-12").innerText =
+          selectOltDetail[12];
+      document.getElementById("olt-14").innerText =
+          selectOltDetail[14];
+      document.getElementById("olt-15").innerText =
+          selectOltDetail[15];
+      document.getElementById("olt-16").innerText =
+          selectOltDetail[16];
+      document.getElementById("olt-17").innerText =
+          selectOltDetail[17];
+      document.getElementById("olt-18").innerText =
+          selectOltDetail[18];
+      document.getElementById("olt-19").innerText =
+          selectOltDetail[19];
+      document.getElementById("olt-20").innerText =
+          selectOltDetail[20];
+      document.getElementById("olt-21").innerText =
+          selectOltDetail[21];
+
+    } else {
+        console.log("Data untuk key", keyOlt, "tidak ditemukan");
     }
-    for (let z = 0; z < oltTable[0].length; z++) {
-            
-        const row = tableOLT.insertRow(); // membuat tbody dan tr didalamnya sekaligus
 
-        const oltTH = document.createElement('th');
-        oltTH.textContent = oltTable[0][z];
-        row.appendChild(oltTH);
-
-        const oltTD = document.createElement('td');
-        oltTD.textContent = ':';
-        row.appendChild(oltTD);
-
-        const oltTD2 = document.createElement('td');
-        oltTD2.textContent = oltTable[1][z];
-        row.appendChild(oltTD2);
-    }
 }
-
-// menghapus / clear table details fat setelah diclose
-document.getElementById('olt-modal-close').addEventListener('click', () => {
-    tableOLT.innerHTML = "";
-});
-document.getElementById('modalOLT').addEventListener('click', () => {
-     document.getElementById('mytableOLT').innerHTML = "";
-});
-
-// membuat ketika bagian dalam dari modal diklik tidak akan ikut ikutan seperti 
-// parentnya yg menghilangkan details ketika parent/element pembungkusnya diklik
-document.querySelector('#modalOLT .modal-dialog').addEventListener('click', (el) => { // params harus disertakan untuk  
-    el.stopPropagation();                                                                 // menjalankan stopPropagation();
-});

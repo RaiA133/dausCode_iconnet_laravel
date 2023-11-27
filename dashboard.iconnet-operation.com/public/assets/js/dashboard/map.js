@@ -160,27 +160,45 @@ function initMap(userLatitude, userLongitude) {
                     console.log("Data untuk key", targetKey, ":", foundElement);
 
                     // Ambil nilai dengan indeks 0, 1, 2, dan 3
-        const selectedValues = foundElement.slice(0, 22);
+                    const selectedValues = foundElement.slice(0, 22);
 
-        // Update nilai pada tabel HTML
-        document.getElementById("index-0").innerText = selectedValues[0];
-        document.getElementById("index-1").innerText = selectedValues[1];
-        document.getElementById("index-3").innerText = selectedValues[3];
-        document.getElementById("index-4").innerText = selectedValues[4];
-        document.getElementById("index-7").innerText = selectedValues[7];
-        document.getElementById("index-8").innerText = selectedValues[8];
-        document.getElementById("index-9").innerText = selectedValues[9];
-        document.getElementById("index-10").innerText = selectedValues[10];
-        document.getElementById("index-11").innerText = selectedValues[11];
-        document.getElementById("index-12").innerText = selectedValues[12];
-        document.getElementById("index-14").innerText = selectedValues[14];
-        document.getElementById("index-15").innerText = selectedValues[15];
-        document.getElementById("index-16").innerText = selectedValues[16];
-        document.getElementById("index-17").innerText = selectedValues[17];
-        document.getElementById("index-18").innerText = selectedValues[18];
-        document.getElementById("index-19").innerText = selectedValues[19];
-        document.getElementById("index-20").innerText = selectedValues[20];
-        document.getElementById("index-21").innerText = selectedValues[21];
+                    // Update nilai pada tabel HTML
+                    document.getElementById("index-0").innerText =
+                        selectedValues[0];
+                    document.getElementById("index-1").innerText =
+                        selectedValues[1];
+                    document.getElementById("index-3").innerText =
+                        selectedValues[3];
+                    document.getElementById("index-4").innerText =
+                        selectedValues[4];
+                    document.getElementById("index-7").innerText =
+                        selectedValues[7];
+                    document.getElementById("index-8").innerText =
+                        selectedValues[8];
+                    document.getElementById("index-9").innerText =
+                        selectedValues[9];
+                    document.getElementById("index-10").innerText =
+                        selectedValues[10];
+                    document.getElementById("index-11").innerText =
+                        selectedValues[11];
+                    document.getElementById("index-12").innerText =
+                        selectedValues[12];
+                    document.getElementById("index-14").innerText =
+                        selectedValues[14];
+                    document.getElementById("index-15").innerText =
+                        selectedValues[15];
+                    document.getElementById("index-16").innerText =
+                        selectedValues[16];
+                    document.getElementById("index-17").innerText =
+                        selectedValues[17];
+                    document.getElementById("index-18").innerText =
+                        selectedValues[18];
+                    document.getElementById("index-19").innerText =
+                        selectedValues[19];
+                    document.getElementById("index-20").innerText =
+                        selectedValues[20];
+                    document.getElementById("index-21").innerText =
+                        selectedValues[21];
                 } else {
                     console.log(
                         "Key",
