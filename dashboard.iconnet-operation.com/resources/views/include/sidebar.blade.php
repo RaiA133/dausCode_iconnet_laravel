@@ -10,12 +10,12 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        {{-- <li class="nav-item">
-            <a class="nav-link {{ $title == 'Halaman 2' ? '' : 'collapsed' }}" href="/halaman2">
+        <li class="nav-item">
+            <a class="nav-link {{ $title == 'olt' ? '' : 'collapsed' }}" href="/olt">
                 <i class="bi bi-person"></i>
-                <span>Halaman 2</span>
+                <span>OLT Hostname</span>
             </a>
-        </li> --}}
+        </li>
 
         @auth
             @if (in_array(auth()->user()->role, ['Administrator']))

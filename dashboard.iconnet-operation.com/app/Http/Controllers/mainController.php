@@ -49,8 +49,24 @@ class mainController extends Controller
         $dataDetail[] = $dataDetailItem;
     }
     
-    // dd($data);
+
     
+    $responseOlt = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/OLT!A2:AD2000?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
+    $dataOlt = $responseOlt->json();
+
+    $oltFilter = array_filter($dataOlt['values'], function ($row) use ($region) {
+      // Periksa apakah indeks 27 ada dalam baris sebelum mencoba mengaksesnya
+      if (isset($row[27])) {
+          return strcasecmp($row[27], $region) === 0;
+      }
+  
+      // Jika indeks 27 tidak ada, return false
+      return false;
+  });
+    
+        // dd($oltFilter);
+
+
     $auth = Auth::user();
     return view('dashboard', [
         "title" => "Dashboard",
@@ -59,15 +75,33 @@ class mainController extends Controller
         "region" => $region,
         "auth" => $auth,
         "mapsData" => $mapsData,
+        "dataOlt" =>$oltFilter,
     ]);
   }
 
 
-    public function halaman2() {
+    public function olt($region = 'BANDUNG' ) {
+
+      
+
+    $responseOlt = Http::get("https://sheets.googleapis.com/v4/spreadsheets/17JHm_VIMaJG3D_JADeCYWFTxRUiKe7LTTTXCZjAlhmU/values/OLT!A2:AD2000?key=AIzaSyCwOuZAm8MkSet-tEv7sYCrkFUx8HSsAnk&majorDimension=ROWS");
+    $dataOlt = $responseOlt->json();
+
+    $oltFilter = array_filter($dataOlt['values'], function ($row) use ($region) {
+      // Periksa apakah indeks 27 ada dalam baris sebelum mencoba mengaksesnya
+      if (isset($row[27])) {
+          return strcasecmp($row[27], $region) === 0;
+      }
+  
+      // Jika indeks 27 tidak ada, return false
+      return false;
+  });
+  
       $auth = Auth::user();
-        return view('halaman2', [
-            "title" => "Halaman 2",
-            "auth"=>$auth        
+        return view('olt.index', [
+          "title" => "Olt Hostname",
+          "dataOlt" =>$oltFilter,
+          "auth"=>$auth        
         ]);
     }
 

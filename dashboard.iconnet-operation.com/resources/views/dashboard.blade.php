@@ -18,6 +18,7 @@
         // Simpan jsonData sebagai variabel global  
         window.jsonData = {!! json_encode($mapsData) !!};
         window.jsonDataDetail = {!! json_encode($data) !!};
+        window.jsonOltDetail = {!! json_encode($dataOlt) !!};
     </script>
 
     <section class="section dashboard">

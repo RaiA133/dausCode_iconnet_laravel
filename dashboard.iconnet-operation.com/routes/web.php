@@ -27,7 +27,6 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/', function () {return redirect('/dashboard');});
   Route::get('/dashboard', [mainController::class, 'dashboard']);
   Route::get('/dashboard/{region}', [mainController::class, 'dashboard']);
-  Route::get('/halaman2', [mainController::class, 'halaman2']);
 
   Route::get('/fetchDataFromGoogleSheets', [mainController::class, 'fetchDataFromGoogleSheets']);
 });
