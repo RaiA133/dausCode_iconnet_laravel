@@ -10,12 +10,12 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        {{-- <li class="nav-item">
-            <a class="nav-link {{ $title == 'olt' ? '' : 'collapsed' }}" href="/olt">
+        <li class="nav-item">
+            <a class="nav-link {{ $title == 'activity' ? '' : 'collapsed' }}" href="/activity">
                 <i class="bi bi-person"></i>
-                <span>OLT Hostname</span>
+                <span>Aktifitas User</span>
             </a>
-        </li> --}}
+        </li>
 
         @auth
             @if (in_array(auth()->user()->role, ['Administrator']))

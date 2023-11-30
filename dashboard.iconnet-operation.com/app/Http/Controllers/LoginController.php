@@ -22,7 +22,9 @@ class LoginController extends Controller
   {
       $credentials = $request->only('email', 'password');
 
+
       if (Auth::attempt($credentials)) {
+        activity()->causedBy(Auth::user())->log(auth()->user()->name.', Login');
           // Authentication passed...
           Alert::success('Selamat Datang!!!', 'Anda Berhasil Masuk');
           return redirect()->intended('/dashboard');
@@ -50,6 +52,7 @@ class LoginController extends Controller
 
   public function logout(Request $request): RedirectResponse
   {
+    activity()->causedBy(Auth::user())->log(auth()->user()->name.', logout');
       Auth::logout();
       $request->session()->invalidate();
       $request->session()->regenerateToken();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\UserActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:Administrator'])->group(function () {
+  Route::get('/activity', [UserActivityController::class, 'index'])->name('activity.index');
+
   Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
   Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
   Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');

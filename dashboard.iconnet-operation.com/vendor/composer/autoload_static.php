@@ -37,6 +37,7 @@ class ComposerStaticInit5bfb59b4d0cf24acbf1adf6f47e3234c
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
+        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
     );
 
@@ -86,10 +87,12 @@ class ComposerStaticInit5bfb59b4d0cf24acbf1adf6f47e3234c
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Spatie\\LaravelPackageTools\\' => 27,
             'Spatie\\LaravelIgnition\\' => 23,
             'Spatie\\Ignition\\' => 16,
             'Spatie\\FlareClient\\' => 19,
             'Spatie\\Backtrace\\' => 17,
+            'Spatie\\Activitylog\\' => 19,
         ),
         'R' => 
         array (
@@ -316,6 +319,10 @@ class ComposerStaticInit5bfb59b4d0cf24acbf1adf6f47e3234c
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Spatie\\LaravelPackageTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
+        ),
         'Spatie\\LaravelIgnition\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
@@ -331,6 +338,10 @@ class ComposerStaticInit5bfb59b4d0cf24acbf1adf6f47e3234c
         'Spatie\\Backtrace\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/backtrace/src',
+        ),
+        'Spatie\\Activitylog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-activitylog/src',
         ),
         'RealRashid\\SweetAlert\\' => 
         array (
@@ -5310,6 +5321,24 @@ class ComposerStaticInit5bfb59b4d0cf24acbf1adf6f47e3234c
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\Activitylog\\ActivityLogStatus' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivityLogStatus.php',
+        'Spatie\\Activitylog\\ActivityLogger' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivityLogger.php',
+        'Spatie\\Activitylog\\ActivitylogServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivitylogServiceProvider.php',
+        'Spatie\\Activitylog\\CauserResolver' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/CauserResolver.php',
+        'Spatie\\Activitylog\\CleanActivitylogCommand' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/CleanActivitylogCommand.php',
+        'Spatie\\Activitylog\\Contracts\\Activity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Contracts/Activity.php',
+        'Spatie\\Activitylog\\Contracts\\LoggablePipe' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Contracts/LoggablePipe.php',
+        'Spatie\\Activitylog\\EventLogBag' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/EventLogBag.php',
+        'Spatie\\Activitylog\\Exceptions\\CouldNotLogActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/CouldNotLogActivity.php',
+        'Spatie\\Activitylog\\Exceptions\\CouldNotLogChanges' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/CouldNotLogChanges.php',
+        'Spatie\\Activitylog\\Exceptions\\InvalidConfiguration' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/InvalidConfiguration.php',
+        'Spatie\\Activitylog\\Facades\\CauserResolver' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Facades/CauserResolver.php',
+        'Spatie\\Activitylog\\Facades\\LogBatch' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Facades/LogBatch.php',
+        'Spatie\\Activitylog\\LogBatch' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/LogBatch.php',
+        'Spatie\\Activitylog\\LogOptions' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/LogOptions.php',
+        'Spatie\\Activitylog\\Models\\Activity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Models/Activity.php',
+        'Spatie\\Activitylog\\Traits\\CausesActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/CausesActivity.php',
+        'Spatie\\Activitylog\\Traits\\LogsActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/LogsActivity.php',
         'Spatie\\Backtrace\\Arguments\\ArgumentReducers' => __DIR__ . '/..' . '/spatie/backtrace/src/Arguments/ArgumentReducers.php',
         'Spatie\\Backtrace\\Arguments\\ProvidedArgument' => __DIR__ . '/..' . '/spatie/backtrace/src/Arguments/ProvidedArgument.php',
         'Spatie\\Backtrace\\Arguments\\ReduceArgumentPayloadAction' => __DIR__ . '/..' . '/spatie/backtrace/src/Arguments/ReduceArgumentPayloadAction.php',
@@ -5486,6 +5515,10 @@ class ComposerStaticInit5bfb59b4d0cf24acbf1adf6f47e3234c
         'Spatie\\LaravelIgnition\\Support\\StringComparator' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/StringComparator.php',
         'Spatie\\LaravelIgnition\\Views\\BladeSourceMapCompiler' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/BladeSourceMapCompiler.php',
         'Spatie\\LaravelIgnition\\Views\\ViewExceptionMapper' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/ViewExceptionMapper.php',
+        'Spatie\\LaravelPackageTools\\Commands\\InstallCommand' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Commands/InstallCommand.php',
+        'Spatie\\LaravelPackageTools\\Exceptions\\InvalidPackage' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Exceptions/InvalidPackage.php',
+        'Spatie\\LaravelPackageTools\\Package' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Package.php',
+        'Spatie\\LaravelPackageTools\\PackageServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/PackageServiceProvider.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Attribute\\AsCommand' => __DIR__ . '/..' . '/symfony/console/Attribute/AsCommand.php',
