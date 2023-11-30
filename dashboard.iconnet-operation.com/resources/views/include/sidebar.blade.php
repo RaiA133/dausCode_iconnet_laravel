@@ -10,15 +10,15 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link {{ $title == 'activity' ? '' : 'collapsed' }}" href="/activity">
-                <i class="bi bi-person"></i>
-                <span>Aktifitas User</span>
-            </a>
-        </li>
-
         @auth
             @if (in_array(auth()->user()->role, ['Administrator']))
+                <li class="nav-item">
+                    <a class="nav-link {{ $title == 'activity' ? '' : 'collapsed' }}" href="/activity">
+                        <i class="bi bi-person"></i>
+                        <span>Aktifitas User</span>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link {{ $title == 'Admin' ? '' : 'collapsed' }}" href="/admin">
                         <i class="bi bi-people"></i>
