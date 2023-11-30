@@ -55,8 +55,6 @@
                   <th>Jenis Olt</th>
                   <th>Brand Olt</th>
                   <th>Type Olt</th>
-                  <th>Jumlah Port Olt</th>
-                  <th>Jumlah Port Terpakai</th>
                   <th>Kapasitas</th>
                   <th>Installation OLT</th>
                   <th>NMS Olt</th>
@@ -81,8 +79,6 @@
                       <td>{{ $item[8] }}</td>
                       <td>{{ $item[9] }}</td>
                       <td>{{ $item[10] }}</td>
-                      <td>{{ $item[11] }}</td>
-                      <td>{{ $item[12] }}</td>
                       <td>{{ $item[14] }}</td>
                       <td>{{ $item[19] }}</td>
                       <td>{{ $item[20] }}</td>
@@ -96,18 +92,22 @@
                               -
                           @endif
                       </td>
-                      {{-- {{ $paramsOlt = $item[2] }} --}}
-                      <td><a href="#" data-bs-toggle="modal" data-bs-target="#modalFDT"
-                        class="btn btn-info btn-sm fdt-code"
-                        onclick="handleLihatClickOLT({{ $item[2] }});">Lihat</td>
+                      <td>
+                        <a href="#" data-bs-toggle="modal" 
+                        data-bs-target="#modalOLT"
+                            class="btn btn-info btn-sm olt-code"
+                            onclick="handleLihatClickOlt('{{ $item[1] }}');">Lihat
+                        </a>
+                    </td>
+                    
                   </tr>
               @endforeach
           </tbody>
       </table>
   </div>
 
-      <!-- MODAL FDT-->
-      <div class="modal fade" id="modalFDT" tabindex="-1" aria-labelledby="modalFDTLabel" aria-hidden="true">
+      <!-- MODAL olt-->
+      <div class="modal fade" id="modalOLT" tabindex="-1" aria-labelledby="modalOLTLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header pb-2 mx-2">
@@ -119,8 +119,8 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="d-sm-flex justify-content-start align-items-center my-3">
-                                {{-- <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">Fdt Code :<h4
-                                  id="fdt-2" class="ms-2 col-form-label fw-bold"></h4> </label> --}}
+                                <label for="fatModalTitle" class="ms-2 col-form-label fw-bold">OLT Hostname :<h4
+                                  id="olt-1" class="ms-2 col-form-label fw-bold"></h4> </label>
                                 <div title="Kode FAT" class="ms-2 col-form-label" id="fatModalTitle"></div>
                             </div>
                             <hr class="mb-0">
@@ -130,64 +130,64 @@
                             <table class="table" id="detail-fdt">
                                 <tbody>
                                     <tr>
-                                        <th>Label Lapangan</th>
-                                        <td id="fdt-0"></td>
-                                        <th>LABEL ICRM</th>
-                                        <td id="fdt-1"></td>
+                                        <th>Jumlah Port</th>
+                                        <td id="olt-11"></td>
+                                        <th>Port Terpakai</th>
+                                        <td id="olt-12"></td>
 
                                     </tr>
                                     <tr>
-                                        <th>INISIAL ODP</th>
-                                        <td id="fdt-3"></td>
-                                        <th>JENIS ODP</th>
-                                        <td id="fdt-4"></td>
+                                        <th>Sisa Port</th>
+                                        <td id="olt-3"></td>
+                                        <th>Tur Presentase</th>
+                                        <td id="olt-4"></td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <th>KOORDINAT</th>
-                                        <td id="fdt-7"></td>
+                                        <td id="olt-7"></td>
                                         <th>STATUS FAT</th>
-                                        <td id="fdt-8"></td>
+                                        <td id="olt-8"></td>
                                     </tr>
                                     <tr>
                                         <th>HOSTNAME OLT</th>
-                                        <td id="fdt-9"></td>
+                                        <td id="olt-9"></td>
                                         <th>BRAND OLT</th>
-                                        <td id="fdt-10"></td>
+                                        <td id="olt-10"></td>
                                     </tr>
                                     <tr>
                                         <th>ASAL OLT</th>
-                                        <td id="fdt-11"></td>
+                                        <td id="olt-11"></td>
                                         <th>BASE OLT</th>
-                                        <td id="fdt-12"></td>
+                                        <td id="olt-12"></td>
                                     </tr>
                                     <tr>
                                         <th>KAB/KOTA</th>
-                                        <td id="fdt-14"></td>
+                                        <td id="olt-14"></td>
                                         <th>CLUSTER</th>
-                                        <td id="fdt-15"></td>
+                                        <td id="olt-15"></td>
                                     </tr>
                                     <tr>
                                         <th>KAPASITAS</th>
-                                        <td id="fdt-16"></td>
+                                        <td id="olt-16"></td>
                                         <th>HC</th>
-                                        <td id="fdt-17"></td>
+                                        <td id="olt-17"></td>
 
                                     </tr>
                                     <tr>
                                         <th>IDLE</th>
-                                        <td id="fdt-18"></td>
+                                        <td id="olt-18"></td>
                                         <th>UTILITY</th>
-                                        <td id="fdt-19"></td>
+                                        <td id="olt-19"></td>
                                     <tr>
                                         <th>TANGGAL INSTALASI</th>
-                                        <td id="fdt-20"></td>
+                                        <td id="olt-20"></td>
                                         <th>TANGGAL INSTALASI2</th>
-                                        <td id="fdt-21"></td>
+                                        <td id="olt-21"></td>
                                     </tr>
                                     <tr>
                                         <th>Jumlah Fat di FDT ini</th>
-                                        <td id="fdt-22"></td>
-                                    </tr>
+                                        <td id="olt-22"></td>
+                                    </tr> --}}
 
                                     </tr>
                                 </tbody>

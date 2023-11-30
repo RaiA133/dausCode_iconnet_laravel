@@ -90,56 +90,44 @@ function toggleRows() {
     });
 }
 
+function handleLihatClickOlt(keyOlt) {
+  console.log("key adalah " + keyOlt);
 
-// Memeriksa apakah jsonDataFatKey telah berhasil dikirim
-// console.log('jsonDataFatKey:', window.jsonDataFatKey);
-// Menampilkan data keseluruhan dari jsonOltDetail
-console.log("Data FAT keseluruhan:", jsonOltDetail);
+  // Variabel untuk menyimpan data yang sesuai dengan keyOlt
+  let selectedDataOlt = null;
+  
 
-// Fungsi untuk menangani klik pada tombol Lihat
-function handleLihatClickOlt(paramsOlt) {
-    // Mendapatkan key dari paramsOlt yang diklik
-    const keyOlt = paramsOlt;
+  for (const propKey in jsonOltDetail) {
+    const value = jsonOltDetail[propKey]?.[1];
 
-    // function untuk mencari jumlah fat dari satu fdt
-    const jumlahFatPadaOlt = jsonOltDetail.filter(
-        (element) => element[2] === keyOlt
-    ).length;
+    if (value === keyOlt) {
+      selectedDataOlt = jsonOltDetail[propKey];
+      break;
+    }
+  }
+
+  const turPercentage = selectedDataOlt[18] / 100;
+  const sisa = selectedDataOlt[11] - selectedDataOlt[12];
 
 
-    // console.log("jumlah fat dari fdt"+ keyOlt +"adlah:" +jumlahFatPadaOlt);
+  document.getElementById("olt-3").innerText = sisa;
+  document.getElementById("olt-4").innerText = turPercentage;
 
-    // Mencari detail dari jsonOltDetail berdasarkan key
-    const cariDetailOLT = jsonOltDetail.find(
-        (element) => element[9] === keyOlt
-    );
 
-      console.log(cariDetailOLT)
-
-    // if (cariDetailOLT) {
-    //     // Ambil nilai dengan indeks 0, 1, 2, dan 3
-    //     const selectOltDetail = cariDetailOLT.slice(0, 22);
-
-    //     // Update nilai pada tabel HTML
-    //     document.getElementById("olt-0").innerText = selectOltDetail[0];
-    //     document.getElementById("olt-1").innerText = selectOltDetail[1];
-    //     document.getElementById("olt-3").innerText = selectOltDetail[3];
-    //     document.getElementById("olt-4").innerText = selectOltDetail[4];
-    //     document.getElementById("olt-7").innerText = selectOltDetail[7];
-    //     document.getElementById("olt-8").innerText = selectOltDetail[8];
-    //     document.getElementById("olt-9").innerText = selectOltDetail[9];
-    //     document.getElementById("olt-10").innerText = selectOltDetail[10];
-    //     document.getElementById("olt-11").innerText = selectOltDetail[11];
-    //     document.getElementById("olt-12").innerText = selectOltDetail[12];
-    //     document.getElementById("olt-14").innerText = selectOltDetail[14];
-    //     document.getElementById("olt-15").innerText = selectOltDetail[15];
-    //     document.getElementById("olt-16").innerText = selectOltDetail[16];
-    //     document.getElementById("olt-17").innerText = selectOltDetail[17];
-    //     document.getElementById("olt-18").innerText = selectOltDetail[18];
-    //     document.getElementById("olt-19").innerText = selectOltDetail[19];
-    //     document.getElementById("olt-20").innerText = selectOltDetail[20];
-    //     document.getElementById("olt-21").innerText = selectOltDetail[21];
-    // } else {
-    //     console.log("Data untuk key", keyOlt, "tidak ditemukan");
-    // }
+  // Mengirim data ke elemen HTML
+  if (selectedDataOlt) {
+    document.getElementById("olt-1").innerText = selectedDataOlt[1];
+    document.getElementById("olt-11").innerText = selectedDataOlt[11];
+    document.getElementById("olt-12").innerText = selectedDataOlt[12];
+  } else {
+    console.log(`Data tidak ditemukan untuk keyOlt '${keyOlt}'.`);
+  }
 }
+
+
+
+
+
+
+
+// console.log("key adalah " +keyOlt)
