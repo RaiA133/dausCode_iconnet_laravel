@@ -1,0 +1,46 @@
+#map {
+    height: 400px;
+    width: 100%;
+    /* border: 1px solid grey; */
+}
+.container-table {
+    height: 300px;
+    overflow-y: auto;
+}
+@media only screen and (max-width : 400px) {
+    #map {
+        height: 400px;
+        width: 100%;
+    }     
+}
+@media only screen and (max-width : 390px) {
+    #map {
+        height: 400px;
+        width: 100%;
+    }     
+}
+
+.tableOLT {
+  max-height: 400px; /* Sesuaikan tinggi maksimum sesuai kebutuhan Anda */
+  overflow-y: auto;
+  display: block;
+}
+
+/* .tableOLT thead,
+.tableOLT tbody {
+  display: block;
+} */
+
+.tableOLT tbody {
+  max-height: inherit; /* Menentukan ketinggian maksimum untuk bagian body */
+}
+
+.tableOLT tbody::-webkit-scrollbar {
+  display: none; /* Sembunyikan bilah gulir bawaan untuk browser WebKit (misalnya, Chrome, Safari) */
+}
+
+.tableOLT thead th,
+.tableOLT tbody td {
+  /* width: auto; */
+  white-space: nowrap;
+}
