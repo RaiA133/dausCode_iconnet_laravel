@@ -15,8 +15,10 @@ class LoginController extends Controller
       if (auth()->check()) {
           return redirect('/dashboard');
       }
-  $title = "login";
-      return view('auth.login', compact('title'));
+  // $title = "login";
+  // return view('auth.login', compact('title'));
+  $title = "mangkrak";
+      return view('auth.mangkrak', compact('title'));
   }
   public function authenticate(Request $request)
   {
